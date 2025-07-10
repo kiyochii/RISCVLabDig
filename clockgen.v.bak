@@ -1,0 +1,25 @@
+module clockgenerator(
+    input clk,
+    input [1:0]SW,
+    output reg outclk
+);
+
+reg[31:0] counter = 0;
+
+always @(posedge clk)begin
+    counter <= counter + 1;
+    if(SW == 0)
+        outclk <= counter[0];
+    else if(SW == 1)
+        outclk <= counter[15];
+    else if(SW == 2)
+        outclk <= counter[31];
+
+
+
+end
+
+
+
+
+endmodule

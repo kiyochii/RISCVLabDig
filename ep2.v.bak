@@ -1,0 +1,445 @@
+// Dan Kiyochi Shoji 15446687
+// Gabriela Sayuri Shimosako Kulik Sottomaior 13681791
+// Henrique Mantovan Carvalho 15459177
+
+module alu
+#(parameter W = 32)
+
+(
+input [4:0] ALUctl,
+input [W-1:0] A, B,
+output [W-1:0] ALUout,
+output Zero
+);
+
+wire [W-1:0] e = A & B;
+wire [W-1:0] ou = A | B;
+wire [W-1:0] soma = A + B;
+wire [W-1:0] menos = A - B;
+
+wire [W-1:0] menorque = ($signed(A) < $signed(B)) ? {W{1'b1}} : {W{1'b0}};
+wire [W-1:0] menorque_unsigned = ($unsigned(A) < $unsigned(B)) ? {W{1'b1}} : {W{1'b0}};
+wire [W-1:0] menor_ou_igual_signed   = ($signed(A) <= $signed(B)) ? {W{1'b1}} : {W{1'b0}};
+wire [W-1:0] menor_ou_igual_unsigned = (A <= B) ? {W{1'b1}} : {W{1'b0}};
+
+
+wire [W-1:0] maiorque = ($signed(A) > $signed(B)) ? {W{1'b1}} : {W{1'b0}};
+wire [W-1:0] maiorque_unsigned = ($unsigned(A) > $unsigned(B)) ? {W{1'b1}} : {W{1'b0}};
+wire [W-1:0] maior_ou_igual_signed   = ($signed(A) >= $signed(B)) ? {W{1'b1}} : {W{1'b0}};
+wire [W-1:0] maior_ou_igual_unsigned = (A >= B) ? {W{1'b1}} : {W{1'b0}};
+
+wire [W-1:0] xorr = A ^ B;
+wire [W-1:0] notor = ~ (A|B);
+wire [W-1:0] diferente = (A != B ) ? {W{1'b1}} : {W{1'b0}};
+wire [W-1:0] igual = (A == B) ? {W{1'b1}} : {W{1'b0}}; 
+
+wire [W-1:0] shift_left  = A << B[4:0];
+wire [W-1:0] shift_right = A >> B[4:0];
+wire [W-1:0] shift_arit = $signed(A) >>> B[4:0];
+
+assign ALUout =
+    (ALUctl == 5'd0) ? e:
+    (ALUctl == 5'd1) ? ou:
+    (ALUctl == 5'd2) ? soma:
+    (ALUctl == 5'd3) ? shift_left :
+    (ALUctl == 5'd4) ? shift_right :
+    (ALUctl == 5'd5) ? shift_arit :  
+    (ALUctl == 5'd6) ? menos:
+    (ALUctl == 5'd7) ? menorque:
+    (ALUctl == 5'd8) ? menorque_unsigned :
+    (ALUctl == 5'd9) ? diferente:
+    (ALUctl == 5'd10) ? xorr:
+    (ALUctl == 5'd11) ? menor_ou_igual_signed:
+    (ALUctl == 5'd12) ? menor_ou_igual_unsigned:
+    (ALUctl == 5'd13) ? maior_ou_igual_signed:
+    (ALUctl == 5'd14) ? maior_ou_igual_unsigned:
+    (ALUctl == 5'd15) ? igual:
+    notor;
+
+assign Zero = (ALUout == 0);
+endmodule
+
+
+
+
+module registerfile
+  #(parameter W = 32)
+(
+  input  [4  :0] Read1, Read2, WriteReg,
+  input  [W-1:0] WriteData,
+  input  RegWrite, clk,
+  output [W-1:0] Data1, Data2
+);
+  reg [W-1:0] registerfile [31:1];
+  assign Data1 = (Read1 != 0) ? registerfile[Read1]: 0;
+  assign Data2 = (Read2 != 0) ? registerfile[Read2]: 0;
+
+  always @(posedge clk) begin
+    if (RegWrite) begin
+        if(WriteReg != 0)
+            registerfile[WriteReg] <= WriteData;
+    end
+  end
+endmodule
+
+
+
+module datapath #(
+    parameter instructions = 256
+)(
+    input clk, rst,
+    input RegWrite, MemWrite, Mem2Reg, ALUSrc, Branch,
+    input [4:0] ALUControl,
+    input [31:0] instr,
+    input [31:0] readdata,
+    output reg [31:0] pc,
+    output reg [31:0] pc_next,
+    output [31:0] aluout, writedata,
+    output Zero
+);
+
+    // ORGANIZACAO DA INSTRUCAO (PFV QUANDO FOR ESCREVER ALGO USAR ISSO!)
+    wire [4:0] rs1     = instr[19:15];
+    wire [4:0] rs2     = instr[24:20];
+    wire [4:0] rd      = instr[11:7];
+    wire [6:0] opcode  = instr[6:0];
+
+    //BANCO DE REGISTRADORES, PFV NAO MISTURAR COM O NOME DAS MEMORIAS
+    wire [31:0] reg_rd1, reg_rd2;
+    wire [31:0] reg_write_data;
+
+    registerfile regs (
+        .Read1(rs1),
+        .Read2(rs2),
+        .WriteReg(rd),
+        .WriteData(reg_write_data),
+        .RegWrite(RegWrite),
+        .clk(clk),
+        .Data1(reg_rd1),
+        .Data2(reg_rd2)
+    );
+
+    assign writedata = reg_rd2;
+
+    //GERADOR DE IMEDIATOS, TALVEZ EU TENHA ME CONFUNDIDO UM POUCO NA REFATORACAO DISSO, ENTAO
+    //EU ACEITO UM DOUBLECHECK NO GTKWAVE PFVVVV
+
+    wire [31:0] imm;
+    assign imm = (opcode == 7'b0010011 || opcode == 7'b0000011 || opcode == 7'b1100111) ? {{20{instr[31]}}, instr[31:20]} :
+                 (opcode == 7'b0100011) ? {{20{instr[31]}}, instr[31:25], instr[11:7]} :
+                 (opcode == 7'b1100011) ? {{19{instr[31]}}, instr[31], instr[7], instr[30:25], instr[11:8], 1'b0} :
+                 (opcode == 7'b0010111 || opcode == 7'b0110111) ? {instr[31:12], 12'b0} :
+                 (opcode == 7'b1101111) ? {{11{instr[31]}}, instr[31], instr[19:12], instr[20], instr[30:21], 1'b0} :
+                 32'b0;
+
+    //MUXS PARA AS ENTRADAS DA ULA
+    wire [31:0] srcA = (opcode == 7'b1101111 || opcode == 7'b0010111) ? pc :
+                       (opcode == 7'b1100111) ? reg_rd1 :
+                       reg_rd1;
+
+    wire [31:0] srcB = (opcode == 7'b1101111 || opcode == 7'b1100111 || opcode == 7'b0010111) ? imm :
+                       (ALUSrc ? imm : reg_rd2);
+
+    //ULA
+    wire [31:0] alu_result;
+    alu #(32) alu_core (
+        .ALUctl(ALUControl),
+        .A(srcA),
+        .B(srcB),
+        .ALUout(alu_result),
+        .Zero(Zero)
+    );
+    assign aluout = alu_result;
+
+    //VALOR DE ESCRITA NO BANCO DE REGS
+    wire [31:0] pc_plus_4 = pc + 4;
+    
+    assign reg_write_data = (opcode == 7'b1101111 || opcode == 7'b1100111) ? pc_plus_4 :
+                            (opcode == 7'b0110111) ? imm :
+                            (opcode == 7'b0010111) ? alu_result :
+                            (Mem2Reg && instr[14:12] == 3'b010) ? readdata:
+                            (Mem2Reg && instr[14:12] == 3'b001) ? {{16{readdata[31]}}, readdata[15:0]}:
+                            (Mem2Reg && instr[14:12] == 3'b000) ? {{24{readdata[31]}}, readdata[7:0]}:
+                            (Mem2Reg && instr[14:12] == 3'b100) ? {{24{1'b0}}, readdata[7:0]}:
+                            (Mem2Reg && instr[14:12] == 3'b101) ? {{16{1'b0}}, readdata[15:0]}:
+                             alu_result;
+
+    
+    //UPDATE NO PC
+    reg [31:0] temp_pc;
+
+    always @(*) begin
+        if (opcode == 7'b1101111) begin // JAL
+            pc_next = alu_result[31:0]; //EH FEIO NE, MAS NAO TEM MT OQ FZ
+        end else if (opcode == 7'b1100111) begin // JALR
+            temp_pc = alu_result & ~32'b1;
+            pc_next = temp_pc[31:0];
+        end else if (opcode == 7'b1100011 && Branch && Zero) begin
+            pc_next = $signed(pc) + $signed(imm[31:0]);
+        end else begin
+            pc_next = pc + 4;
+        end
+    end
+
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            pc <= 0;
+        end else begin
+            pc <= pc_next;
+        end
+    end
+
+endmodule
+
+
+module poliriscv_sc32 #(
+    parameter instructions = 1024, // Number of instructions (32 bits each)
+    parameter datawords = 1024     // Number of words (32 bits each)
+)(                  
+    input clk, rst,
+    input [31:0] IM_data, DM_data_i,
+    output [ $clog2(instructions * 4) - 1 : 0 ] IM_address, DM_address,
+    output [31:0] DM_data_o,
+    output DM_write_enable,
+    
+    
+    //DEBUG
+    output wire [31:0] pcdebug,
+    output wire [31:0] nextpcdebug,
+    output wire [31:0] aluoutdebug
+
+);
+
+assign aluoutdebug = ALUout;
+assign pcdebug = pc;
+assign nextpcdebug = pc_in;
+
+//INSTR
+wire [31:0] Instr = IM_data;
+
+//ORGANIZANDO
+wire [6:0] Opcode = Instr[6:0];
+wire [6:0] funct7 = Instr[31:25];
+wire [2:0] funct3 = Instr[14:12];
+wire [9:0] funct = {funct7, funct3};
+
+//OPCODES //PFV SE PRECISAR ADD ALGUMA COISA ADD POR AQUI
+localparam OPCODE_OP_IMM  = 7'b0010011;
+localparam OPCODE_OP      = 7'b0110011;
+localparam OPCODE_LOAD    = 7'b0000011;
+localparam OPCODE_STORE   = 7'b0100011;
+localparam OPCODE_BRANCH  = 7'b1100011;
+localparam OPCODE_JAL     = 7'b1101111;
+localparam OPCODE_JALR    = 7'b1100111;
+localparam OPCODE_LUI     = 7'b0110111;
+localparam OPCODE_AUIPC   = 7'b0010111;
+
+//ALUCTRL
+localparam ALU_ADD  = 5'd2;
+localparam ALU_SUB  = 5'd6;
+localparam ALU_AND  = 5'd0;
+localparam ALU_OR   = 5'd1;
+localparam ALU_XOR = 5'd10;
+localparam ALU_SLT  = 5'd7;
+localparam ALU_SLTU = 5'd8;
+localparam ALU_DIFF = 5'd9;
+
+localparam ALU_SLL  = 5'd3;
+localparam ALU_SRL  = 5'd4;
+localparam ALU_SRA  = 5'd5;
+
+
+//APENAS PARA OS BRANCHES
+localparam ALU_MENORIGUALSIGNED = 5'd11;
+localparam ALU_MENORIGUALUNSIGNED = 5'd12;
+localparam ALU_MAIORIGUALSIGNED = 5'd13;
+localparam ALU_MAIORIGUALUNSIGNED = 5'd14;
+localparam ALU_IGUAL = 5'd15;
+localparam ALU_MENORQUESIGNED  = 5'd7;
+localparam ALU_MENORQUEUNSIGNED = 5'd8; //SEI QUE JA FOI DEF MAS SO P N ME CONFUNDIR
+
+//SINAIS DE CONTROLE DA DP
+reg RegWrite;
+reg Memwrite;
+reg Mem2Reg;
+reg ALUSrc;
+reg Branch;
+reg [4:0] ALUControl;
+wire Zero;
+
+
+//TESTBENCH EH NECESSARIO
+wire [31:0] pc;
+wire [31:0] pc_in;
+wire [31:0] ALUout, writedata;
+wire [4:0] rfi_rd = Instr[11:7];
+wire [31:0] rfi_wd = dp.reg_write_data;
+
+initial
+begin
+    Memwrite = 0;
+end
+
+
+datapath #(
+        .instructions(instructions)) dp (
+        .clk(clk),
+        .rst(rst),
+        .RegWrite(RegWrite),
+        .MemWrite(Memwrite),
+        .Mem2Reg(Mem2Reg),
+        .ALUSrc(ALUSrc),
+        .Branch(Branch),
+        .ALUControl(ALUControl),
+        .instr(Instr),
+        .readdata(DM_data_i),
+        .pc(pc),
+        .pc_next(pc_in),
+        .aluout(ALUout),
+        .writedata(writedata),
+        .Zero(Zero)
+    );
+
+
+    assign IM_address = pc>>2;
+    assign DM_address = ALUout[$clog2(datawords * 4) - 1 : 0];
+    
+    assign DM_data_o = (funct3 == 3'b100) ? {24'b0, writedata[7:0]}:
+                       (funct3 == 3'b101) ? {16'b0, writedata[15:0]}:
+                       (funct3 == 3'b000) ? {{24{writedata[7]}}, writedata[7:0]}:
+                       (funct3 == 3'b001) ? {{16{writedata[15]}}, writedata[15:0]}:
+                       writedata;
+
+
+    assign DM_write_enable = Memwrite;
+
+always @(*) begin
+    RegWrite   = 0;
+    Memwrite   = 0;
+    Mem2Reg    = 0;
+    ALUSrc     = 0;
+    Branch     = 0;
+    ALUControl = ALU_ADD;
+
+    case (Opcode)
+        OPCODE_OP_IMM: begin
+        RegWrite   = 1;
+        ALUSrc     = 1;
+        Memwrite   = 0;
+        Mem2Reg    = 0;
+        Branch     = 0;
+        case(funct3) //wire [6:0] funct7 = Instr[31:25];wire [2:0] funct3 = Instr[14:12];wire [9:0] funct = {funct7, funct3};
+            3'b000: ALUControl = ALU_ADD;
+            3'b100: ALUControl = ALU_XOR;
+            3'b110: ALUControl = ALU_OR;
+            3'b111: ALUControl = ALU_AND;
+            3'b001: ALUControl = ALU_SLL;
+            3'b101:
+                case(funct7)
+                    7'b0100000: ALUControl = ALU_SRA;
+                    7'b0000000: ALUControl = ALU_SRL;
+                endcase 
+            3'b010: ALUControl = ALU_SLT;
+            3'b011: ALUControl = ALU_SLTU;
+        endcase
+        end
+
+        OPCODE_OP: begin
+        RegWrite   = 1;
+        ALUSrc     = 0;
+        Memwrite   = 0;
+        Mem2Reg    = 0;
+        Branch     = 0;
+
+        case (funct)
+            
+            10'b0000000_000: ALUControl = ALU_ADD;
+            10'b0100000_000: ALUControl = ALU_SUB;
+            10'b0000000_111: ALUControl = ALU_AND;
+            10'b0000000_110: ALUControl = ALU_OR;
+            10'b0000000_010: ALUControl = ALU_SLT;
+            10'b0000000_011: ALUControl = ALU_SLTU;
+            10'b0000000_001: ALUControl = ALU_SLL;
+            10'b0000000_101: ALUControl = ALU_SRL;
+            10'b0100000_101: ALUControl = ALU_SRA;
+            10'b0000000_100: ALUControl = ALU_XOR;
+
+            default: ALUControl = ALU_ADD;
+        endcase
+        end
+
+        OPCODE_LOAD: begin
+        RegWrite   = 1;
+        ALUSrc     = 1;
+        Memwrite   = 0;
+        Mem2Reg    = 1;
+        Branch     = 0;
+        ALUControl = ALU_ADD;
+        end
+
+        OPCODE_STORE: begin
+        RegWrite   = 0;
+        ALUSrc     = 1;
+        Memwrite   = 1;
+        Mem2Reg    = 0;
+        Branch     = 0;
+        ALUControl = ALU_ADD;
+        end
+
+        OPCODE_BRANCH: begin
+        RegWrite   = 0;
+        ALUSrc     = 0;
+        Memwrite   = 0;
+        Mem2Reg    = 0;
+        Branch     = 1;
+        case(funct3)
+            3'b000:  ALUControl = ALU_SUB;
+            3'b001: ALUControl = ALU_IGUAL; //LOGICA INVERTIDA PQ TEM Q SER ALUOUT == 1
+            3'b100: ALUControl = ALU_MAIORIGUALSIGNED;
+            3'b101: ALUControl = ALU_MENORQUESIGNED;
+            3'b110: ALUControl = ALU_MAIORIGUALUNSIGNED;
+            3'b111: ALUControl = ALU_MENORQUEUNSIGNED;
+        endcase
+        end
+
+        OPCODE_JAL: begin
+        RegWrite   = 1;
+        ALUSrc     = 1;
+        Memwrite   = 0;
+        Mem2Reg    = 0;
+        Branch     = 0;
+        ALUControl = ALU_ADD;
+        end
+
+        OPCODE_JALR: begin
+        RegWrite   = 1;
+        ALUSrc     = 1;
+        Memwrite   = 0;
+        Mem2Reg    = 0;
+        Branch     = 0;
+        ALUControl = ALU_ADD;
+        end
+
+        OPCODE_LUI: begin
+        RegWrite   = 1;
+        ALUSrc     = 1;
+        Memwrite   = 0;
+        Mem2Reg    = 0;
+        Branch     = 0;
+        ALUControl = ALU_ADD;
+        end
+
+        OPCODE_AUIPC: begin
+        RegWrite   = 1;
+        ALUSrc     = 1;
+        Memwrite   = 0;
+        Mem2Reg    = 0;
+        Branch     = 0;
+        ALUControl = ALU_ADD;
+        end
+
+    endcase
+    end
+
+
+endmodule
