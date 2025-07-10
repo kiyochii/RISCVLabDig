@@ -206,86 +206,25 @@ assign sel_i_rom = 4'b1111;
 assign wbsram_addr = 10'b1000000000;
 assign wbsram_addr_msk = 10'b0111111111;
 
-wishbone_mrom wshrom
-(
-	clk_i.(outclk),
-	rst_i.(!RESET_N),
-	cyc_i.(wb_cyc_o),
-	stb_i.(wb_stb_o),
-	sel_i.(sel_i_rom),
-	dat_i(wb_dat_i),
-	addr_i;(wb_adr_o),
-	dat_o.(wb_dat_o),
-      ack_o.(wb_ack_i)
+wishbone_mrom wshrom (
+    .clk_i(outclk),        // Connects 'clk_i' port of wishbone_mrom to 'outclk' signal in current module
+    .rst_i(!RESET_N),      // Connects 'rst_i' port to inverted 'RESET_N'
+    .cyc_i(wb_cyc_o),
+    .stb_i(wb_stb_o),
+    .sel_i(sel_i_rom),     // sel_i is 4 bits wide [3:0]
+    .dat_i(wb_dat_i),      // dat_i is 32 bits wide [31:0]
+    .addr_i(wb_adr_o),     // addr_i is 10 bits wide [9:0]
+    .dat_o(wb_dat_o),      // dat_o is 32 bits wide [31:0]
+    .ack_o(wb_ack_i)
 );
-
-wb_mux_2 #(.ADDR_WIDTH = 10) mux2(
-    clk.(outclk),
-    rst.(!RESET_N),
-
-    /*
-     * Wishbone master input
-     */
-    wbm_adr_i,     // ADR_I() address input
-    wbm_dat_i,     // DAT_I() data in
-    wbm_dat_o,     // DAT_O() data out
-    wbm_we_i,      // WE_I write enable input
-    wbm_sel_i,     // SEL_I() select input
-    wbm_stb_i,     // STB_I strobe input
-    wbm_ack_o,     // ACK_O acknowledge output
-    wbm_err_o,     // ERR_O error output
-    wbm_rty_o,     // RTY_O retry output
-    wbm_cyc_i,     // CYC_I cycle input
-
-    /*
-     * Wishbone slave 0 output
-     */
-    wbs0_adr_o,    // ADR_O() address output
-    wbs0_dat_i,    // DAT_I() data in
-    wbs0_dat_o,    // DAT_O() data out
-    wbs0_we_o,     // WE_O write enable output
-    wbs0_sel_o,    // SEL_O() select output
-    wbs0_stb_o,    // STB_O strobe output
-    wbs0_ack_i,    // ACK_I acknowledge input
-    wbs0_err_i,    // ERR_I error input
-    wbs0_rty_i,    // RTY_I retry input
-    wbs0_cyc_o,    // CYC_O cycle output
-
-    /*
-     * Wishbone slave 0 address configuration
-     */
-    wbs0_addr,     // Slave address prefix
-    wbs0_addr_msk, // Slave address prefix mask
-
-    /*
-     * Wishbone slave 1 output
-     */
-    wbs1_adr_o,    // ADR_O() address output
-    wbs1_dat_i,    // DAT_I() data in
-    wbs1_dat_o,    // DAT_O() data out
-    wbs1_we_o,     // WE_O write enable output
-    wbs1_sel_o,    // SEL_O() select output
-    wbs1_stb_o,    // STB_O strobe output
-    wbs1_ack_i,    // ACK_I acknowledge input
-    wbs1_err_i,    // ERR_I error input
-    wbs1_rty_i,    // RTY_I retry input
-    wbs1_cyc_o,    // CYC_O cycle output
-
-    /*
-     * Wishbone slave 1 address configuration
-     */
-    wbs1_addr,     // Slave address prefix
-    wbs1_addr_msk  // Slave address prefix mask
-)
-
 
 	
 localparam [2:0]
-	STATE_IDLE = 3b'000,
-	STATE_HEADER = 3d'001,
-	STATE_READ_ROM = 3d'010,
-	STATE_READ_RAM = 3d'011,
-	STATE_WRITE_RAM = 3d'100;
+	STATE_IDLE = 3'b000,
+	STATE_HEADER = 3'b001,
+	STATE_READ_ROM = 3'b010,
+	STATE_READ_RAM = 3'b011,
+	STATE_WRITE_RAM = 3'b100;
 
 reg[2:0] state_reg = STATE_IDLE;
 reg[2:0] state_next;

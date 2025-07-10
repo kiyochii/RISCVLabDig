@@ -9,7 +9,7 @@ module wishboneram (
     input wire [31:0] dat_i,
     input wire [31:0] adr_i,
     output reg  [31:0] dat_o,
-    output  ack_o
+    output reg ack_o
     
     );
     
