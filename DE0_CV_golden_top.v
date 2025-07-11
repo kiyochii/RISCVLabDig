@@ -202,12 +202,11 @@ wire                    wbs1_err_i;
 wire                    wbs1_rty_i;
 wire                    wbs1_cyc_o;
 
-// Endereços base e máscaras
-wire [ADDR_WIDTH-1:0]   wbs0_addr     = 32'h00000000;  // ROM base address
-wire [ADDR_WIDTH-1:0]   wbs0_addr_msk = 32'h80000000;  // ROM address mask
+wire [ADDR_WIDTH-1:0]   wbs0_addr     = 32'h00000000;  
+wire [ADDR_WIDTH-1:0]   wbs0_addr_msk = 32'h80000000;  
 
-wire [ADDR_WIDTH-1:0]   wbs1_addr     = 32'h80000000;  // RAM base address
-wire [ADDR_WIDTH-1:0]   wbs1_addr_msk = 32'h80000000;  // RAM address mask
+wire [ADDR_WIDTH-1:0]   wbs1_addr     = 32'h80000000;  
+wire [ADDR_WIDTH-1:0]   wbs1_addr_msk = 32'h80000000;  
 
 
 wb_mux_2 #(
@@ -294,7 +293,6 @@ poliriscv_sc32 #(
     .clk(outclk),
     .rst(!RESET_N),
 
-    // Debug outputs (pode usar ou deixar desconectado)
     .pcdebug(pc),
     .nextpcdebug(nextpc),
     .aluoutdebug(aluout),

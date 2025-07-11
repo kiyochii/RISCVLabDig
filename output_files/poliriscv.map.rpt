@@ -1,5 +1,5 @@
 Analysis & Synthesis report for poliriscv
-Fri Jul 11 15:02:03 2025
+Fri Jul 11 16:06:56 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -65,7 +65,7 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Fri Jul 11 15:02:03 2025       ;
+; Analysis & Synthesis Status     ; Successful - Fri Jul 11 16:06:56 2025       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; poliriscv                                   ;
 ; Top-level Entity Name           ; DE0_CV_golden_top                           ;
@@ -186,7 +186,7 @@ https://fpgasoftware.intel.com/eula.
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
 ;     Processor 2            ;   0.1%      ;
-;     Processor 3            ;   0.1%      ;
+;     Processor 3            ;   0.0%      ;
 ;     Processor 4            ;   0.0%      ;
 +----------------------------+-------------+
 
@@ -741,7 +741,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:10     ;
+; Top            ; 00:00:09     ;
 +----------------+--------------+
 
 
@@ -751,7 +751,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Fri Jul 11 15:01:41 2025
+    Info: Processing started: Fri Jul 11 16:06:34 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off poliriscv -c poliriscv
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -847,7 +847,7 @@ Info (12133): Instantiated megafunction "wishbone_mrom:u_rom|mrom:rom|altsyncram
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_jvf1.tdf
     Info (12023): Found entity 1: altsyncram_jvf1 File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 28
 Info (12128): Elaborating entity "altsyncram_jvf1" for hierarchy "wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated" File: c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12128): Elaborating entity "poliriscv_sc32" for hierarchy "poliriscv_sc32:u_poliriscv" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 313
+Info (12128): Elaborating entity "poliriscv_sc32" for hierarchy "poliriscv_sc32:u_poliriscv" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 312
 Warning (10036): Verilog HDL or VHDL warning at ep2.v(381): object "DM_write_enable" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 381
 Warning (10036): Verilog HDL or VHDL warning at ep2.v(346): object "rfi_rd" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 346
 Warning (10235): Verilog HDL Always Construct warning at ep2.v(243): variable "ACK_I" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 243
@@ -869,8 +869,8 @@ Info (12128): Elaborating entity "registerfile" for hierarchy "poliriscv_sc32:u_
 Info (12128): Elaborating entity "alu" for hierarchy "poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core" File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 147
 Warning (10036): Verilog HDL or VHDL warning at ep2.v(26): object "maiorque" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 26
 Warning (10036): Verilog HDL or VHDL warning at ep2.v(27): object "maiorque_unsigned" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 27
-Info (12128): Elaborating entity "hexdecoder" for hierarchy "hexdecoder:hex5" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 354
-Info (12128): Elaborating entity "clockgenerator" for hierarchy "clockgenerator:clkg" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 364
+Info (12128): Elaborating entity "hexdecoder" for hierarchy "hexdecoder:hex5" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 353
+Info (12128): Elaborating entity "clockgenerator" for hierarchy "clockgenerator:clkg" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 363
 Warning (10240): Verilog HDL Always Construct warning at clockgen.v(24): inferring latch(es) for variable "outclk", which holds its previous value in one or more paths through the always construct File: C:/Users/Operador/Downloads/danquartus/danQuartus/clockgen.v Line: 24
 Info (10041): Inferred latch for "outclk" at clockgen.v(26) File: C:/Users/Operador/Downloads/danquartus/danQuartus/clockgen.v Line: 26
 Warning (14284): Synthesized away the following node(s):
@@ -955,8 +955,8 @@ Info (21057): Implemented 2787 device resources after synthesis - the final reso
     Info (21061): Implemented 2687 logic cells
     Info (21064): Implemented 32 RAM segments
 Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 110 warnings
-    Info: Peak virtual memory: 4858 megabytes
-    Info: Processing ended: Fri Jul 11 15:02:03 2025
+    Info: Peak virtual memory: 4857 megabytes
+    Info: Processing ended: Fri Jul 11 16:06:56 2025
     Info: Elapsed time: 00:00:22
     Info: Total CPU time (on all processors): 00:00:37
 
