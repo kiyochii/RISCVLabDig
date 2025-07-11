@@ -13,12 +13,12 @@ module wishboneram (
     
     );
     
-    //ONDE EU USO O SEL_I? pode ser ignorado? visto que usamos todos os bits do data_i?
 
 
     always @(posedge clk_i or posedge rst_i) begin
-
-        if (cyc_i & stb_i & ~ack_o)
+			if (rst_i)
+			ack_o <= 1'b0;
+        else if (cyc_i & stb_i & ~ack_o)
             ack_o <= 1'b1;
         else
             ack_o <= 1'b0;

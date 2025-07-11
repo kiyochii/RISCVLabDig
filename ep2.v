@@ -92,19 +92,18 @@ module datapath #(
     input [4:0] ALUControl,
     input [31:0] instr,
     input [31:0] readdata,
+    input stoppc,
     output reg [31:0] pc,
-    output reg [31:0] pc_next,
+    output [31:0] pc_next,
     output [31:0] aluout, writedata,
     output Zero
 );
 
-    // ORGANIZACAO DA INSTRUCAO (PFV QUANDO FOR ESCREVER ALGO USAR ISSO!)
     wire [4:0] rs1     = instr[19:15];
     wire [4:0] rs2     = instr[24:20];
     wire [4:0] rd      = instr[11:7];
     wire [6:0] opcode  = instr[6:0];
 
-    //BANCO DE REGISTRADORES, PFV NAO MISTURAR COM O NOME DAS MEMORIAS
     wire [31:0] reg_rd1, reg_rd2;
     wire [31:0] reg_write_data;
 
@@ -120,9 +119,6 @@ module datapath #(
     );
 
     assign writedata = reg_rd2;
-
-    //GERADOR DE IMEDIATOS, TALVEZ EU TENHA ME CONFUNDIDO UM POUCO NA REFATORACAO DISSO, ENTAO
-    //EU ACEITO UM DOUBLECHECK NO GTKWAVE PFVVVV
 
     wire [31:0] imm;
     assign imm = (opcode == 7'b0010011 || opcode == 7'b0000011 || opcode == 7'b1100111) ? {{20{instr[31]}}, instr[31:20]} :
@@ -165,27 +161,12 @@ module datapath #(
                              alu_result;
 
     
-    //UPDATE NO PC
-    reg [31:0] temp_pc;
-
-    always @(*) begin
-        if (opcode == 7'b1101111) begin // JAL
-            pc_next = alu_result[31:0]; //EH FEIO NE, MAS NAO TEM MT OQ FZ
-        end else if (opcode == 7'b1100111) begin // JALR
-            temp_pc = alu_result & ~32'b1;
-            pc_next = temp_pc[31:0];
-        end else if (opcode == 7'b1100011 && Branch && Zero) begin
-           pc_next = $signed(pc) + $signed(imm[31:0]);
-        end else begin
-            pc_next = pc + 4;
-		end
-    end
-	
-	 wire [31:0]proxpc;
-	 wire [31:0] somab =$signed(pc) + $signed(imm[31:0]); 
-    assign proxpc = (opcode == 7'b1100011 && Branch && Zero) ? somab:
-	 pc+4;
-    always @(posedge clk or posedge rst) begin
+    assign pc_next = (stoppc == 1'b1) ? pc:
+                     (opcode == 7'b1101111) ? alu_result[31:0] :
+                     (opcode == 7'b1100111) ? (alu_result & ~1'b1) :
+                     (opcode == 7'b1100011 && Branch && Zero) ? $signed(pc) + $signed(imm[31:0]) :
+                     (pc + 4);
+	always @(posedge clk or posedge rst) begin
         if (rst) begin
             pc <= 0;
         end else begin
@@ -198,36 +179,124 @@ endmodule
 
 module poliriscv_sc32 #(
     parameter instructions = 1024, // Number of instructions (32 bits each)
-    parameter datawords = 1024     // Number of words (32 bits each)
-)(                  
-    input clk, rst,
-    input [31:0] IM_data, DM_data_i,
-    output [ $clog2(instructions * 4) - 1 : 0 ] IM_address, DM_address,
-    output [31:0] DM_data_o,
-    output DM_write_enable,
-    
-    
-    //DEBUG
-    output wire [31:0] pcdebug,
-    output wire [31:0] nextpcdebug,
-    output wire [31:0] aluoutdebug
+    parameter datawords = 1024,     // Number of words (32 bits each)
+    parameter datawidth = 32,
+    parameter addrwidth = 32
 
+)(
+
+    input clk, rst,
+
+    //DEBUG
+    output wire [datawidth-1:0] pcdebug,
+    output wire [datawidth-1:0] nextpcdebug,
+    output wire [datawidth-1:0] aluoutdebug,
+
+    //IMPLEMENTACAO DO WISHBONE
+    input ACK_I,
+    input ERR_I,
+    input [datawidth-1:0] DAT_I,
+
+    output [datawidth-1:0] DAT_O,
+    output [addrwidth-1:0] ADR_O,
+    output reg CYC_O,
+    output reg STB_O,
+    output [3:0]SEL_O,
+    output WE_O
 );
 
 assign aluoutdebug = ALUout;
 assign pcdebug = pc;
 assign nextpcdebug = pc_in;
 
-//INSTR
-wire [31:0] Instr = IM_data;
 
-//ORGANIZANDO
+parameter [2:0]
+    STATE_IDLE = 3'b000,
+    STATE_READ_1 =  3'b001,
+    STATE_READ_2 =  3'b010,
+    STATE_READ_3 =  3'b011,
+    STATE_WRITE_1 = 3'b100,
+    STATE_WRITE_2 = 3'b101,
+    STATE_WRITE_3 = 3'b110;
+
+always@(posedge clk or posedge rst) begin
+    if (rst) begin
+        state <= STATE_IDLE;   
+    end else begin
+        state <= next_state;
+    end
+end
+reg [2:0]state;
+reg [2:0] next_state;
+wire stoppc = ~(state == STATE_READ_1);
+
+always @(state, next_state) begin
+    case (state)
+        STATE_IDLE: next_state = STATE_READ_1;
+
+        STATE_READ_1: begin
+                CYC_O = 1'b1;
+                STB_O = 1'b1;
+                next_state = STATE_READ_2;
+            end
+        STATE_READ_2: begin
+                if (ACK_I) begin
+                    next_state = STATE_READ_3;
+                end else begin
+                    next_state = STATE_READ_2;
+                end
+            end
+        STATE_READ_3: begin
+                CYC_O = 1'b0;
+                STB_O = 1'b0;
+                if (!ACK_I) begin
+                    if(DAT_I[6:0] == 7'b0100011)
+                        next_state = STATE_WRITE_1;
+                    else
+                        next_state = STATE_READ_1;
+                end else begin
+                    next_state = STATE_READ_3;
+                end
+            end
+        STATE_WRITE_1: begin
+                CYC_O = 1'b1;
+                STB_O = 1'b1;
+                next_state = STATE_WRITE_2;                
+            end
+        STATE_WRITE_2: begin
+                if (ACK_I) begin
+                    next_state = STATE_WRITE_3;
+                end else begin
+                    next_state = STATE_WRITE_2;
+                end
+            end
+        STATE_WRITE_3: begin
+                CYC_O = 1'b0;
+                STB_O = 1'b0;
+                if (!ACK_I) begin
+                    next_state = STATE_READ_1;
+                end else begin
+                    next_state = STATE_WRITE_3;
+                end
+            end
+
+
+    endcase
+end
+
+assign ADR_O = 
+                (state == STATE_WRITE_1 || state == STATE_WRITE_2 || state == STATE_WRITE_3) ? DM_address :
+                pc>>2;
+//INSTR
+wire [31:0] Instr = DAT_I;
+
+assign WE_O = (Opcode == OPCODE_STORE /*como que eu consigo diferenciar?*/) ? 1'b1 : 1'b0;
+
 wire [6:0] Opcode = Instr[6:0];
 wire [6:0] funct7 = Instr[31:25];
 wire [2:0] funct3 = Instr[14:12];
 wire [9:0] funct = {funct7, funct3};
 
-//OPCODES //PFV SE PRECISAR ADD ALGUMA COISA ADD POR AQUI
 localparam OPCODE_OP_IMM  = 7'b0010011;
 localparam OPCODE_OP      = 7'b0110011;
 localparam OPCODE_LOAD    = 7'b0000011;
@@ -252,15 +321,13 @@ localparam ALU_SLL  = 5'd3;
 localparam ALU_SRL  = 5'd4;
 localparam ALU_SRA  = 5'd5;
 
-
-//APENAS PARA OS BRANCHES
 localparam ALU_MENORIGUALSIGNED = 5'd11;
 localparam ALU_MENORIGUALUNSIGNED = 5'd12;
 localparam ALU_MAIORIGUALSIGNED = 5'd13;
 localparam ALU_MAIORIGUALUNSIGNED = 5'd14;
 localparam ALU_IGUAL = 5'd15;
 localparam ALU_MENORQUESIGNED  = 5'd7;
-localparam ALU_MENORQUEUNSIGNED = 5'd8; //SEI QUE JA FOI DEF MAS SO P N ME CONFUNDIR
+localparam ALU_MENORQUEUNSIGNED = 5'd8; 
 
 //SINAIS DE CONTROLE DA DP
 reg RegWrite;
@@ -278,10 +345,7 @@ wire [31:0] pc_in;
 wire [31:0] ALUout, writedata;
 wire [4:0] rfi_rd = Instr[11:7];
 
-initial
-begin
-    Memwrite = 0;
-end
+
 
 
 datapath #(
@@ -295,8 +359,9 @@ datapath #(
         .Branch(Branch),
         .ALUControl(ALUControl),
         .instr(Instr),
-        .readdata(DM_data_i),
+        .readdata(DAT_I),
         .pc(pc),
+        .stoppc(stoppc),
         .pc_next(pc_in),
         .aluout(ALUout),
         .writedata(writedata),
@@ -304,14 +369,13 @@ datapath #(
     );
 
 
-    assign IM_address = pc>>2;
     assign DM_address = ALUout[$clog2(datawords * 4) - 1 : 0];
     
-    assign DM_data_o = (funct3 == 3'b100) ? {24'b0, writedata[7:0]}:
-                       (funct3 == 3'b101) ? {16'b0, writedata[15:0]}:
-                       (funct3 == 3'b000) ? {{24{writedata[7]}}, writedata[7:0]}:
-                       (funct3 == 3'b001) ? {{16{writedata[15]}}, writedata[15:0]}:
-                       writedata;
+    assign DAT_O =  (funct3 == 3'b100) ? {24'b0, writedata[7:0]}:
+                    (funct3 == 3'b101) ? {16'b0, writedata[15:0]}:
+                    (funct3 == 3'b000) ? {{24{writedata[7]}}, writedata[7:0]}:
+                    (funct3 == 3'b001) ? {{16{writedata[15]}}, writedata[15:0]}:
+                    writedata;
 
 
     assign DM_write_enable = Memwrite;
@@ -331,7 +395,7 @@ always @(*) begin
         Memwrite   = 0;
         Mem2Reg    = 0;
         Branch     = 0;
-        case(funct3) //wire [6:0] funct7 = Instr[31:25];wire [2:0] funct3 = Instr[14:12];wire [9:0] funct = {funct7, funct3};
+        case(funct3)
             3'b000: ALUControl = ALU_ADD;
             3'b100: ALUControl = ALU_XOR;
             3'b110: ALUControl = ALU_OR;

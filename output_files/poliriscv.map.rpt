@@ -1,5 +1,5 @@
 Analysis & Synthesis report for poliriscv
-Thu Jul 10 13:41:31 2025
+Fri Jul 11 15:02:03 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -15,28 +15,30 @@ Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis RAM Summary
   9. Analysis & Synthesis IP Cores Summary
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Multiplexer Restructuring Statistics (Restructuring Performed)
- 13. Source assignments for mrom:im|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated
- 14. Source assignments for dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated
- 15. Source assignments for wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated
- 16. Parameter Settings for User Entity Instance: mrom:im|altsyncram:altsyncram_component
- 17. Parameter Settings for User Entity Instance: dmram:dm|altsyncram:altsyncram_component
- 18. Parameter Settings for User Entity Instance: wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component
- 19. Parameter Settings for User Entity Instance: poliriscv_sc32:proc
- 20. Parameter Settings for User Entity Instance: poliriscv_sc32:proc|datapath:dp
- 21. Parameter Settings for User Entity Instance: poliriscv_sc32:proc|datapath:dp|registerfile:regs
- 22. Parameter Settings for User Entity Instance: poliriscv_sc32:proc|datapath:dp|alu:alu_core
- 23. altsyncram Parameter Settings by Entity Instance
- 24. Port Connectivity Checks: "poliriscv_sc32:proc|datapath:dp"
- 25. Port Connectivity Checks: "poliriscv_sc32:proc"
- 26. Port Connectivity Checks: "wishbone_mrom:wshrom"
- 27. Port Connectivity Checks: "dmram:dm"
- 28. Post-Synthesis Netlist Statistics for Top Partition
- 29. Elapsed Time Per Partition
- 30. Analysis & Synthesis Messages
- 31. Analysis & Synthesis Suppressed Messages
+ 10. State Machine - |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|state
+ 11. User-Specified and Inferred Latches
+ 12. Registers Removed During Synthesis
+ 13. General Register Statistics
+ 14. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 15. Source assignments for wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated
+ 16. Source assignments for wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated
+ 17. Parameter Settings for User Entity Instance: wb_mux_2:wb_mux_inst
+ 18. Parameter Settings for User Entity Instance: wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component
+ 19. Parameter Settings for User Entity Instance: wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component
+ 20. Parameter Settings for User Entity Instance: poliriscv_sc32:u_poliriscv
+ 21. Parameter Settings for User Entity Instance: poliriscv_sc32:u_poliriscv|datapath:dp
+ 22. Parameter Settings for User Entity Instance: poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs
+ 23. Parameter Settings for User Entity Instance: poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core
+ 24. altsyncram Parameter Settings by Entity Instance
+ 25. Port Connectivity Checks: "poliriscv_sc32:u_poliriscv|datapath:dp"
+ 26. Port Connectivity Checks: "poliriscv_sc32:u_poliriscv"
+ 27. Port Connectivity Checks: "wishboneram:u_ram|dmram:u_dmram"
+ 28. Port Connectivity Checks: "wishboneram:u_ram"
+ 29. Port Connectivity Checks: "wb_mux_2:wb_mux_inst"
+ 30. Post-Synthesis Netlist Statistics for Top Partition
+ 31. Elapsed Time Per Partition
+ 32. Analysis & Synthesis Messages
+ 33. Analysis & Synthesis Suppressed Messages
 
 
 
@@ -63,13 +65,13 @@ https://fpgasoftware.intel.com/eula.
 +-------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                  ;
 +---------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status     ; Successful - Thu Jul 10 13:41:31 2025       ;
+; Analysis & Synthesis Status     ; Successful - Fri Jul 11 15:02:03 2025       ;
 ; Quartus Prime Version           ; 20.1.1 Build 720 11/11/2020 SJ Lite Edition ;
 ; Revision Name                   ; poliriscv                                   ;
 ; Top-level Entity Name           ; DE0_CV_golden_top                           ;
 ; Family                          ; Cyclone V                                   ;
 ; Logic utilization (in ALMs)     ; N/A                                         ;
-; Total registers                 ; 1049                                        ;
+; Total registers                 ; 1057                                        ;
 ; Total pins                      ; 68                                          ;
 ; Total virtual pins              ; 0                                           ;
 ; Total block memory bits         ; 32,768                                      ;
@@ -184,7 +186,7 @@ https://fpgasoftware.intel.com/eula.
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
 ;     Processor 2            ;   0.1%      ;
-;     Processor 3            ;   0.0%      ;
+;     Processor 3            ;   0.1%      ;
 ;     Processor 4            ;   0.0%      ;
 +----------------------------+-------------+
 
@@ -194,7 +196,9 @@ https://fpgasoftware.intel.com/eula.
 +----------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                 ; Library ;
 +----------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------+---------+
+; wb_mux2.v                        ; yes             ; User Verilog HDL File                  ; C:/Users/Operador/Downloads/danquartus/danQuartus/wb_mux2.v                  ;         ;
 ; wshbrom.v                        ; yes             ; User Verilog HDL File                  ; C:/Users/Operador/Downloads/danquartus/danQuartus/wshbrom.v                  ;         ;
+; wshbram.v                        ; yes             ; User Verilog HDL File                  ; C:/Users/Operador/Downloads/danquartus/danQuartus/wshbram.v                  ;         ;
 ; hexdecoder.v                     ; yes             ; User Verilog HDL File                  ; C:/Users/Operador/Downloads/danquartus/danQuartus/hexdecoder.v               ;         ;
 ; ep2.v                            ; yes             ; User Verilog HDL File                  ; C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v                      ;         ;
 ; clockgen.v                       ; yes             ; User Verilog HDL File                  ; C:/Users/Operador/Downloads/danquartus/danQuartus/clockgen.v                 ;         ;
@@ -210,9 +214,9 @@ https://fpgasoftware.intel.com/eula.
 ; altrom.inc                       ; yes             ; Megafunction                           ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altrom.inc            ;         ;
 ; altram.inc                       ; yes             ; Megafunction                           ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altram.inc            ;         ;
 ; altdpram.inc                     ; yes             ; Megafunction                           ; c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altdpram.inc          ;         ;
+; db/altsyncram_ocl1.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf     ;         ;
 ; db/altsyncram_jvf1.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf     ;         ;
 ; rom.mif                          ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Operador/Downloads/danquartus/danQuartus/rom.mif                    ;         ;
-; db/altsyncram_ocl1.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf     ;         ;
 +----------------------------------+-----------------+----------------------------------------+------------------------------------------------------------------------------+---------+
 
 
@@ -221,16 +225,16 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------+------------------------------+
 ; Resource                                    ; Usage                        ;
 +---------------------------------------------+------------------------------+
-; Estimate of Logic utilization (ALMs needed) ; 1377                         ;
+; Estimate of Logic utilization (ALMs needed) ; 1424                         ;
 ;                                             ;                              ;
-; Combinational ALUT usage for logic          ; 1526                         ;
-;     -- 7 input functions                    ; 492                          ;
-;     -- 6 input functions                    ; 449                          ;
-;     -- 5 input functions                    ; 224                          ;
-;     -- 4 input functions                    ; 176                          ;
-;     -- <=3 input functions                  ; 185                          ;
+; Combinational ALUT usage for logic          ; 1674                         ;
+;     -- 7 input functions                    ; 491                          ;
+;     -- 6 input functions                    ; 452                          ;
+;     -- 5 input functions                    ; 279                          ;
+;     -- 4 input functions                    ; 228                          ;
+;     -- <=3 input functions                  ; 224                          ;
 ;                                             ;                              ;
-; Dedicated logic registers                   ; 1049                         ;
+; Dedicated logic registers                   ; 1057                         ;
 ;                                             ;                              ;
 ; I/O pins                                    ; 68                           ;
 ; Total MLAB memory bits                      ; 0                            ;
@@ -239,95 +243,127 @@ https://fpgasoftware.intel.com/eula.
 ; Total DSP Blocks                            ; 0                            ;
 ;                                             ;                              ;
 ; Maximum fan-out node                        ; clockgenerator:clkg|outclk~0 ;
-; Maximum fan-out                             ; 1024                         ;
-; Total fan-out                               ; 12099                        ;
-; Average fan-out                             ; 4.41                         ;
+; Maximum fan-out                             ; 1064                         ;
+; Total fan-out                               ; 12718                        ;
+; Average fan-out                             ; 4.39                         ;
 +---------------------------------------------+------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                               ;
-+-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------+-------------------+--------------+
-; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                       ; Entity Name       ; Library Name ;
-+-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------+-------------------+--------------+
-; |DE0_CV_golden_top                        ; 1526 (22)           ; 1049 (0)                  ; 32768             ; 0          ; 68   ; 0            ; |DE0_CV_golden_top                                                                        ; DE0_CV_golden_top ; work         ;
-;    |clockgenerator:clkg|                  ; 31 (31)             ; 25 (25)                   ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|clockgenerator:clkg                                                    ; clockgenerator    ; work         ;
-;    |hexdecoder:hex1|                      ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|hexdecoder:hex1                                                        ; hexdecoder        ; work         ;
-;    |hexdecoder:hex2|                      ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|hexdecoder:hex2                                                        ; hexdecoder        ; work         ;
-;    |hexdecoder:hex3|                      ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|hexdecoder:hex3                                                        ; hexdecoder        ; work         ;
-;    |hexdecoder:hex4|                      ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|hexdecoder:hex4                                                        ; hexdecoder        ; work         ;
-;    |hexdecoder:hex5|                      ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|hexdecoder:hex5                                                        ; hexdecoder        ; work         ;
-;    |mrom:im|                              ; 0 (0)               ; 0 (0)                     ; 32768             ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|mrom:im                                                                ; mrom              ; work         ;
-;       |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 32768             ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|mrom:im|altsyncram:altsyncram_component                                ; altsyncram        ; work         ;
-;          |altsyncram_jvf1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 32768             ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|mrom:im|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated ; altsyncram_jvf1   ; work         ;
-;    |poliriscv_sc32:proc|                  ; 1438 (16)           ; 1024 (0)                  ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|poliriscv_sc32:proc                                                    ; poliriscv_sc32    ; work         ;
-;       |datapath:dp|                       ; 1422 (287)          ; 1024 (32)                 ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp                                        ; datapath          ; work         ;
-;          |alu:alu_core|                   ; 515 (515)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core                           ; alu               ; work         ;
-;          |registerfile:regs|              ; 620 (620)           ; 992 (992)                 ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|registerfile:regs                      ; registerfile      ; work         ;
-+-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------+-------------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                       ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------+-------------------+--------------+
+; Compilation Hierarchy Node                   ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                            ; Entity Name       ; Library Name ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------+-------------------+--------------+
+; |DE0_CV_golden_top                           ; 1674 (39)           ; 1057 (0)                  ; 32768             ; 0          ; 68   ; 0            ; |DE0_CV_golden_top                                                                                             ; DE0_CV_golden_top ; work         ;
+;    |clockgenerator:clkg|                     ; 31 (31)             ; 25 (25)                   ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|clockgenerator:clkg                                                                         ; clockgenerator    ; work         ;
+;    |hexdecoder:hex1|                         ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|hexdecoder:hex1                                                                             ; hexdecoder        ; work         ;
+;    |hexdecoder:hex2|                         ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|hexdecoder:hex2                                                                             ; hexdecoder        ; work         ;
+;    |hexdecoder:hex3|                         ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|hexdecoder:hex3                                                                             ; hexdecoder        ; work         ;
+;    |hexdecoder:hex4|                         ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|hexdecoder:hex4                                                                             ; hexdecoder        ; work         ;
+;    |hexdecoder:hex5|                         ; 7 (7)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|hexdecoder:hex5                                                                             ; hexdecoder        ; work         ;
+;    |poliriscv_sc32:u_poliriscv|              ; 1568 (39)           ; 1031 (7)                  ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv                                                                  ; poliriscv_sc32    ; work         ;
+;       |datapath:dp|                          ; 1529 (375)          ; 1024 (32)                 ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp                                                      ; datapath          ; work         ;
+;          |alu:alu_core|                      ; 537 (537)           ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core                                         ; alu               ; work         ;
+;          |registerfile:regs|                 ; 617 (617)           ; 992 (992)                 ; 0                 ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs                                    ; registerfile      ; work         ;
+;    |wishbone_mrom:u_rom|                     ; 1 (1)               ; 1 (1)                     ; 32768             ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|wishbone_mrom:u_rom                                                                         ; wishbone_mrom     ; work         ;
+;       |mrom:rom|                             ; 0 (0)               ; 0 (0)                     ; 32768             ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|wishbone_mrom:u_rom|mrom:rom                                                                ; mrom              ; work         ;
+;          |altsyncram:altsyncram_component|   ; 0 (0)               ; 0 (0)                     ; 32768             ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component                                ; altsyncram        ; work         ;
+;             |altsyncram_jvf1:auto_generated| ; 0 (0)               ; 0 (0)                     ; 32768             ; 0          ; 0    ; 0            ; |DE0_CV_golden_top|wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated ; altsyncram_jvf1   ; work         ;
++----------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+----------------------------------------------------------------------------------------------------------------+-------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis RAM Summary                                                                                                                                              ;
-+-----------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+---------+
-; Name                                                                              ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF     ;
-+-----------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+---------+
-; mrom:im|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 1024         ; 32           ; --           ; --           ; 32768 ; rom.mif ;
-+-----------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+---------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                   ;
++--------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+---------+
+; Name                                                                                                   ; Type ; Mode ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size  ; MIF     ;
++--------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+---------+
+; wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|ALTSYNCRAM ; AUTO ; ROM  ; 1024         ; 32           ; --           ; --           ; 32768 ; rom.mif ;
++--------------------------------------------------------------------------------------------------------+------+------+--------------+--------------+--------------+--------------+-------+---------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis IP Cores Summary                                                                                              ;
-+--------+--------------+---------+--------------+--------------+--------------------------------------------------+-----------------+
-; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                                  ; IP Include File ;
-+--------+--------------+---------+--------------+--------------+--------------------------------------------------+-----------------+
-; Altera ; RAM: 1-PORT  ; 20.1    ; N/A          ; N/A          ; |DE0_CV_golden_top|dmram:dm                      ; dmram.v         ;
-; Altera ; ROM: 1-PORT  ; 20.1    ; N/A          ; N/A          ; |DE0_CV_golden_top|mrom:im                       ; mrom.v          ;
-; Altera ; ROM: 1-PORT  ; 20.1    ; N/A          ; N/A          ; |DE0_CV_golden_top|wishbone_mrom:wshrom|mrom:rom ; mrom.v          ;
-+--------+--------------+---------+--------------+--------------+--------------------------------------------------+-----------------+
++--------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                                                ;
++--------+--------------+---------+--------------+--------------+----------------------------------------------------+-----------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                                    ; IP Include File ;
++--------+--------------+---------+--------------+--------------+----------------------------------------------------+-----------------+
+; Altera ; RAM: 1-PORT  ; 20.1    ; N/A          ; N/A          ; |DE0_CV_golden_top|wishboneram:u_ram|dmram:u_dmram ; dmram.v         ;
+; Altera ; ROM: 1-PORT  ; 20.1    ; N/A          ; N/A          ; |DE0_CV_golden_top|wishbone_mrom:u_rom|mrom:rom    ; mrom.v          ;
++--------+--------------+---------+--------------+--------------+----------------------------------------------------+-----------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                                              ;
-+-------------------------------------------------------------------+---------------------------------------------+
-; Register name                                                     ; Reason for Removal                          ;
-+-------------------------------------------------------------------+---------------------------------------------+
-; clockgenerator:clkg|counter[25..31]                               ; Lost fanout                                 ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~0  ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~2  ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~1  ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~3  ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~4  ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~6  ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~5  ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~7  ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~8  ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~10 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~9  ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~11 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~12 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~14 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~13 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~15 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~16 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~18 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~17 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~19 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~20 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~22 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~21 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~23 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~24 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~26 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~25 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~27 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~28 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~30 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~29 ; Stuck at GND due to stuck port clock_enable ;
-; poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile~31 ; Stuck at GND due to stuck port clock_enable ;
-; Total Number of Removed Registers = 39                            ;                                             ;
-+-------------------------------------------------------------------+---------------------------------------------+
+Encoding Type:  One-Hot
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|state                                                                                                     ;
++---------------------+---------------------+---------------------+---------------------+--------------------+--------------------+--------------------+------------------+
+; Name                ; state.STATE_WRITE_3 ; state.STATE_WRITE_2 ; state.STATE_WRITE_1 ; state.STATE_READ_3 ; state.STATE_READ_2 ; state.STATE_READ_1 ; state.STATE_IDLE ;
++---------------------+---------------------+---------------------+---------------------+--------------------+--------------------+--------------------+------------------+
+; state.STATE_IDLE    ; 0                   ; 0                   ; 0                   ; 0                  ; 0                  ; 0                  ; 0                ;
+; state.STATE_READ_1  ; 0                   ; 0                   ; 0                   ; 0                  ; 0                  ; 1                  ; 1                ;
+; state.STATE_READ_2  ; 0                   ; 0                   ; 0                   ; 0                  ; 1                  ; 0                  ; 1                ;
+; state.STATE_READ_3  ; 0                   ; 0                   ; 0                   ; 1                  ; 0                  ; 0                  ; 1                ;
+; state.STATE_WRITE_1 ; 0                   ; 0                   ; 1                   ; 0                  ; 0                  ; 0                  ; 1                ;
+; state.STATE_WRITE_2 ; 0                   ; 1                   ; 0                   ; 0                  ; 0                  ; 0                  ; 1                ;
+; state.STATE_WRITE_3 ; 1                   ; 0                   ; 0                   ; 0                  ; 0                  ; 0                  ; 1                ;
++---------------------+---------------------+---------------------+---------------------+--------------------+--------------------+--------------------+------------------+
+
+
++------------------------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                              ;
++----------------------------------------------------+------------------------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal                ; Free of Timing Hazards ;
++----------------------------------------------------+------------------------------------+------------------------+
+; poliriscv_sc32:u_poliriscv|CYC_O                   ; poliriscv_sc32:u_poliriscv|WideOr5 ; yes                    ;
+; poliriscv_sc32:u_poliriscv|STB_O                   ; poliriscv_sc32:u_poliriscv|WideOr5 ; yes                    ;
+; Number of user-specified and inferred latches = 2  ;                                    ;                        ;
++----------------------------------------------------+------------------------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
++------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                     ;
++--------------------------------------------------------------------------+---------------------------------------------+
+; Register name                                                            ; Reason for Removal                          ;
++--------------------------------------------------------------------------+---------------------------------------------+
+; wishboneram:u_ram|ack_o                                                  ; Stuck at GND due to stuck port data_in      ;
+; poliriscv_sc32:u_poliriscv|state~4                                       ; Lost fanout                                 ;
+; poliriscv_sc32:u_poliriscv|state~5                                       ; Lost fanout                                 ;
+; poliriscv_sc32:u_poliriscv|state~6                                       ; Lost fanout                                 ;
+; clockgenerator:clkg|counter[25..31]                                      ; Lost fanout                                 ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~0  ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~2  ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~1  ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~3  ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~4  ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~6  ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~5  ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~7  ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~8  ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~10 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~9  ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~11 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~12 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~14 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~13 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~15 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~16 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~18 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~17 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~19 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~20 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~22 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~21 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~23 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~24 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~26 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~25 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~27 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~28 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~30 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~29 ; Stuck at GND due to stuck port clock_enable ;
+; poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile~31 ; Stuck at GND due to stuck port clock_enable ;
+; Total Number of Removed Registers = 43                                   ;                                             ;
++--------------------------------------------------------------------------+---------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -335,344 +371,281 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 1049  ;
+; Total registers                              ; 1057  ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 57    ;
+; Number of registers using Asynchronous Clear ; 65    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 992   ;
+; Number of registers using Clock Enable       ; 1004  ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                            ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
-; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|pc[24]                   ;
-; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|imm[20]                  ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ShiftRight0 ;
-; 4:1                ; 49 bits   ; 98 LEs        ; 98 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ShiftLeft0  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ShiftRight0 ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ShiftRight1 ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ShiftLeft0  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ShiftLeft0  ;
-; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ShiftLeft0  ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|imm[18]                  ;
-; 3:1                ; 19 bits   ; 38 LEs        ; 38 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|pc_next[5]               ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|srcA[24]                 ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|srcB[24]                 ;
-; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|imm[9]                   ;
-; 4:1                ; 20 bits   ; 40 LEs        ; 40 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|hex4out[1]                                               ;
-; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|imm[2]                   ;
-; 9:1                ; 32 bits   ; 192 LEs       ; 160 LEs              ; 32 LEs                 ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|reg_write_data[17]       ;
-; 142:1              ; 3 bits    ; 282 LEs       ; 48 LEs               ; 234 LEs                ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|Selector2                            ;
-; 17:1               ; 5 bits    ; 55 LEs        ; 55 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ALUout[6]   ;
-; 18:1               ; 8 bits    ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ALUout[17]  ;
-; 17:1               ; 3 bits    ; 33 LEs        ; 33 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ALUout[14]  ;
-; 19:1               ; 2 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ALUout[9]   ;
-; 20:1               ; 3 bits    ; 39 LEs        ; 39 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ALUout[1]   ;
-; 20:1               ; 2 bits    ; 26 LEs        ; 24 LEs               ; 2 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ALUout[26]  ;
-; 21:1               ; 3 bits    ; 42 LEs        ; 42 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:proc|datapath:dp|alu:alu_core|ALUout[30]  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------+
+; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; Yes        ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|pc[24]                   ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|imm[24]                  ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ShiftRight0 ;
+; 4:1                ; 49 bits   ; 98 LEs        ; 98 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ShiftLeft0  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ShiftRight0 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ShiftRight1 ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ShiftLeft0  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ShiftLeft0  ;
+; 4:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ShiftLeft0  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|imm[13]                  ;
+; 3:1                ; 12 bits   ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|srcB[20]                 ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|srcA[19]                 ;
+; 4:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|imm[7]                   ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|hex2out[0]                                                      ;
+; 4:1                ; 18 bits   ; 36 LEs        ; 36 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|pc_next[7]               ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|reg_write_data[7]        ;
+; 5:1                ; 4 bits    ; 12 LEs        ; 8 LEs                ; 4 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|imm[4]                   ;
+; 6:1                ; 8 bits    ; 32 LEs        ; 32 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|hex3out[3]                                                      ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|hex5out[2]                                                      ;
+; 8:1                ; 8 bits    ; 40 LEs        ; 32 LEs               ; 8 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|reg_write_data[15]       ;
+; 8:1                ; 15 bits   ; 75 LEs        ; 60 LEs               ; 15 LEs                 ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|reg_write_data[20]       ;
+; 142:1              ; 3 bits    ; 282 LEs       ; 48 LEs               ; 234 LEs                ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|Selector10                           ;
+; 17:1               ; 5 bits    ; 55 LEs        ; 55 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ALUout[8]   ;
+; 18:1               ; 8 bits    ; 96 LEs        ; 96 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ALUout[17]  ;
+; 17:1               ; 3 bits    ; 33 LEs        ; 33 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ALUout[12]  ;
+; 19:1               ; 2 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ALUout[9]   ;
+; 20:1               ; 3 bits    ; 39 LEs        ; 39 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ALUout[3]   ;
+; 20:1               ; 2 bits    ; 26 LEs        ; 24 LEs               ; 2 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ALUout[25]  ;
+; 21:1               ; 3 bits    ; 42 LEs        ; 42 LEs               ; 0 LEs                  ; No         ; |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core|ALUout[30]  ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------+
-; Source assignments for mrom:im|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated ;
-+---------------------------------+--------------------+------+---------------------------------+
-; Assignment                      ; Value              ; From ; To                              ;
-+---------------------------------+--------------------+------+---------------------------------+
-; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                               ;
-+---------------------------------+--------------------+------+---------------------------------+
++-----------------------------------------------------------------------------------------------------------------------+
+; Source assignments for wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated ;
++---------------------------------+--------------------+------+---------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                      ;
++---------------------------------+--------------------+------+---------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                       ;
++---------------------------------+--------------------+------+---------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------+
-; Source assignments for dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated ;
-+---------------------------------+--------------------+------+----------------------------------+
-; Assignment                      ; Value              ; From ; To                               ;
-+---------------------------------+--------------------+------+----------------------------------+
-; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                ;
-+---------------------------------+--------------------+------+----------------------------------+
++--------------------------------------------------------------------------------------------------------------------+
+; Source assignments for wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated ;
++---------------------------------+--------------------+------+------------------------------------------------------+
+; Assignment                      ; Value              ; From ; To                                                   ;
++---------------------------------+--------------------+------+------------------------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                    ;
++---------------------------------+--------------------+------+------------------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------+
-; Source assignments for wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated ;
-+---------------------------------+--------------------+------+-------------------------------------------------------+
-; Assignment                      ; Value              ; From ; To                                                    ;
-+---------------------------------+--------------------+------+-------------------------------------------------------+
-; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                                     ;
-+---------------------------------+--------------------+------+-------------------------------------------------------+
-
-
-+--------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: mrom:im|altsyncram:altsyncram_component ;
-+------------------------------------+----------------------+--------------------------+
-; Parameter Name                     ; Value                ; Type                     ;
-+------------------------------------+----------------------+--------------------------+
-; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                  ;
-; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY               ;
-; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY             ;
-; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE             ;
-; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE           ;
-; WIDTH_BYTEENA                      ; 1                    ; Untyped                  ;
-; OPERATION_MODE                     ; ROM                  ; Untyped                  ;
-; WIDTH_A                            ; 32                   ; Signed Integer           ;
-; WIDTHAD_A                          ; 10                   ; Signed Integer           ;
-; NUMWORDS_A                         ; 1024                 ; Signed Integer           ;
-; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                  ;
-; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                  ;
-; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                  ;
-; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                  ;
-; INDATA_ACLR_A                      ; NONE                 ; Untyped                  ;
-; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                  ;
-; WIDTH_B                            ; 1                    ; Untyped                  ;
-; WIDTHAD_B                          ; 1                    ; Untyped                  ;
-; NUMWORDS_B                         ; 1                    ; Untyped                  ;
-; INDATA_REG_B                       ; CLOCK1               ; Untyped                  ;
-; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                  ;
-; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                  ;
-; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                  ;
-; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                  ;
-; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                  ;
-; INDATA_ACLR_B                      ; NONE                 ; Untyped                  ;
-; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                  ;
-; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                  ;
-; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                  ;
-; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                  ;
-; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                  ;
-; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer           ;
-; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                  ;
-; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                  ;
-; BYTE_SIZE                          ; 8                    ; Untyped                  ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                  ;
-; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                  ;
-; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                  ;
-; INIT_FILE                          ; rom.mif              ; Untyped                  ;
-; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                  ;
-; MAXIMUM_DEPTH                      ; 0                    ; Untyped                  ;
-; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                  ;
-; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                  ;
-; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                  ;
-; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                  ;
-; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                  ;
-; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                  ;
-; ENABLE_ECC                         ; FALSE                ; Untyped                  ;
-; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                  ;
-; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                  ;
-; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                  ;
-; CBXI_PARAMETER                     ; altsyncram_jvf1      ; Untyped                  ;
-+------------------------------------+----------------------+--------------------------+
++-------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: wb_mux_2:wb_mux_inst ;
++----------------+-------+------------------------------------------+
+; Parameter Name ; Value ; Type                                     ;
++----------------+-------+------------------------------------------+
+; DATA_WIDTH     ; 32    ; Signed Integer                           ;
+; ADDR_WIDTH     ; 32    ; Signed Integer                           ;
+; SELECT_WIDTH   ; 4     ; Signed Integer                           ;
++----------------+-------+------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
-+---------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: dmram:dm|altsyncram:altsyncram_component ;
-+------------------------------------+----------------------+---------------------------+
-; Parameter Name                     ; Value                ; Type                      ;
-+------------------------------------+----------------------+---------------------------+
-; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                   ;
-; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                ;
-; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY              ;
-; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE              ;
-; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE            ;
-; WIDTH_BYTEENA                      ; 1                    ; Untyped                   ;
-; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                   ;
-; WIDTH_A                            ; 32                   ; Signed Integer            ;
-; WIDTHAD_A                          ; 10                   ; Signed Integer            ;
-; NUMWORDS_A                         ; 1024                 ; Signed Integer            ;
-; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                   ;
-; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                   ;
-; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                   ;
-; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                   ;
-; INDATA_ACLR_A                      ; NONE                 ; Untyped                   ;
-; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                   ;
-; WIDTH_B                            ; 1                    ; Untyped                   ;
-; WIDTHAD_B                          ; 1                    ; Untyped                   ;
-; NUMWORDS_B                         ; 1                    ; Untyped                   ;
-; INDATA_REG_B                       ; CLOCK1               ; Untyped                   ;
-; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                   ;
-; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                   ;
-; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                   ;
-; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                   ;
-; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                   ;
-; INDATA_ACLR_B                      ; NONE                 ; Untyped                   ;
-; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                   ;
-; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                   ;
-; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                   ;
-; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                   ;
-; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                   ;
-; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer            ;
-; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                   ;
-; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                   ;
-; BYTE_SIZE                          ; 8                    ; Untyped                   ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                   ;
-; READ_DURING_WRITE_MODE_PORT_A      ; DONT_CARE            ; Untyped                   ;
-; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                   ;
-; INIT_FILE                          ; UNUSED               ; Untyped                   ;
-; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                   ;
-; MAXIMUM_DEPTH                      ; 0                    ; Untyped                   ;
-; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                   ;
-; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                   ;
-; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                   ;
-; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                   ;
-; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                   ;
-; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                   ;
-; ENABLE_ECC                         ; FALSE                ; Untyped                   ;
-; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                   ;
-; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                   ;
-; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                   ;
-; CBXI_PARAMETER                     ; altsyncram_ocl1      ; Untyped                   ;
-+------------------------------------+----------------------+---------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component ;
-+------------------------------------+----------------------+------------------------------------------------+
-; Parameter Name                     ; Value                ; Type                                           ;
-+------------------------------------+----------------------+------------------------------------------------+
-; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                        ;
-; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                     ;
-; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                   ;
-; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                   ;
-; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                 ;
-; WIDTH_BYTEENA                      ; 1                    ; Untyped                                        ;
-; OPERATION_MODE                     ; ROM                  ; Untyped                                        ;
-; WIDTH_A                            ; 32                   ; Signed Integer                                 ;
-; WIDTHAD_A                          ; 10                   ; Signed Integer                                 ;
-; NUMWORDS_A                         ; 1024                 ; Signed Integer                                 ;
-; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                        ;
-; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                        ;
-; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                        ;
-; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                        ;
-; INDATA_ACLR_A                      ; NONE                 ; Untyped                                        ;
-; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                        ;
-; WIDTH_B                            ; 1                    ; Untyped                                        ;
-; WIDTHAD_B                          ; 1                    ; Untyped                                        ;
-; NUMWORDS_B                         ; 1                    ; Untyped                                        ;
-; INDATA_REG_B                       ; CLOCK1               ; Untyped                                        ;
-; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                        ;
-; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                        ;
-; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                        ;
-; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                        ;
-; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                        ;
-; INDATA_ACLR_B                      ; NONE                 ; Untyped                                        ;
-; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                        ;
-; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                        ;
-; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                        ;
-; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                        ;
-; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                        ;
-; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                 ;
-; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                        ;
-; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                        ;
-; BYTE_SIZE                          ; 8                    ; Untyped                                        ;
-; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                        ;
-; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                        ;
-; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                        ;
-; INIT_FILE                          ; rom.mif              ; Untyped                                        ;
-; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                        ;
-; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                        ;
-; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                        ;
-; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                        ;
-; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                        ;
-; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                        ;
-; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                        ;
-; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                        ;
-; ENABLE_ECC                         ; FALSE                ; Untyped                                        ;
-; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                        ;
-; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                        ;
-; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                        ;
-; CBXI_PARAMETER                     ; altsyncram_jvf1      ; Untyped                                        ;
-+------------------------------------+----------------------+------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: poliriscv_sc32:proc ;
-+----------------+-------+-----------------------------------------+
-; Parameter Name ; Value ; Type                                    ;
-+----------------+-------+-----------------------------------------+
-; instructions   ; 1024  ; Signed Integer                          ;
-; datawords      ; 1024  ; Signed Integer                          ;
-+----------------+-------+-----------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: poliriscv_sc32:proc|datapath:dp ;
-+----------------+-------+-----------------------------------------------------+
-; Parameter Name ; Value ; Type                                                ;
-+----------------+-------+-----------------------------------------------------+
-; instructions   ; 1024  ; Signed Integer                                      ;
-+----------------+-------+-----------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+------------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: poliriscv_sc32:proc|datapath:dp|registerfile:regs ;
-+----------------+-------+-----------------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                                  ;
-+----------------+-------+-----------------------------------------------------------------------+
-; W              ; 32    ; Signed Integer                                                        ;
-+----------------+-------+-----------------------------------------------------------------------+
-Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
-
-
-+-------------------------------------------------------------------------------------------+
-; Parameter Settings for User Entity Instance: poliriscv_sc32:proc|datapath:dp|alu:alu_core ;
-+----------------+-------+------------------------------------------------------------------+
-; Parameter Name ; Value ; Type                                                             ;
-+----------------+-------+------------------------------------------------------------------+
-; W              ; 32    ; Signed Integer                                                   ;
-+----------------+-------+------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+--------------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                             ;
++------------------------------------+----------------------+--------------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                          ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                       ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                     ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                     ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                   ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                          ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                                          ;
+; WIDTH_A                            ; 32                   ; Signed Integer                                   ;
+; WIDTHAD_A                          ; 10                   ; Signed Integer                                   ;
+; NUMWORDS_A                         ; 1024                 ; Signed Integer                                   ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                          ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                          ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                          ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                          ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                          ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                          ;
+; WIDTH_B                            ; 1                    ; Untyped                                          ;
+; WIDTHAD_B                          ; 1                    ; Untyped                                          ;
+; NUMWORDS_B                         ; 1                    ; Untyped                                          ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                          ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                          ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                          ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                          ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                          ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                          ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                          ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                          ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                          ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                          ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                          ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                          ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                   ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                          ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                          ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                          ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                          ;
+; READ_DURING_WRITE_MODE_PORT_A      ; DONT_CARE            ; Untyped                                          ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                          ;
+; INIT_FILE                          ; UNUSED               ; Untyped                                          ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                          ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                          ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                          ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                          ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                          ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                          ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                          ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                          ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                          ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                          ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                          ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                          ;
+; CBXI_PARAMETER                     ; altsyncram_ocl1      ; Untyped                                          ;
++------------------------------------+----------------------+--------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
 +-----------------------------------------------------------------------------------------------------------+
-; altsyncram Parameter Settings by Entity Instance                                                          ;
-+-------------------------------------------+---------------------------------------------------------------+
-; Name                                      ; Value                                                         ;
-+-------------------------------------------+---------------------------------------------------------------+
-; Number of entity instances                ; 3                                                             ;
-; Entity Instance                           ; mrom:im|altsyncram:altsyncram_component                       ;
-;     -- OPERATION_MODE                     ; ROM                                                           ;
-;     -- WIDTH_A                            ; 32                                                            ;
-;     -- NUMWORDS_A                         ; 1024                                                          ;
-;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                  ;
-;     -- WIDTH_B                            ; 1                                                             ;
-;     -- NUMWORDS_B                         ; 1                                                             ;
-;     -- ADDRESS_REG_B                      ; CLOCK1                                                        ;
-;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                  ;
-;     -- RAM_BLOCK_TYPE                     ; AUTO                                                          ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                     ;
-; Entity Instance                           ; dmram:dm|altsyncram:altsyncram_component                      ;
-;     -- OPERATION_MODE                     ; SINGLE_PORT                                                   ;
-;     -- WIDTH_A                            ; 32                                                            ;
-;     -- NUMWORDS_A                         ; 1024                                                          ;
-;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                  ;
-;     -- WIDTH_B                            ; 1                                                             ;
-;     -- NUMWORDS_B                         ; 1                                                             ;
-;     -- ADDRESS_REG_B                      ; CLOCK1                                                        ;
-;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                  ;
-;     -- RAM_BLOCK_TYPE                     ; AUTO                                                          ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                     ;
-; Entity Instance                           ; wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component ;
-;     -- OPERATION_MODE                     ; ROM                                                           ;
-;     -- WIDTH_A                            ; 32                                                            ;
-;     -- NUMWORDS_A                         ; 1024                                                          ;
-;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                  ;
-;     -- WIDTH_B                            ; 1                                                             ;
-;     -- NUMWORDS_B                         ; 1                                                             ;
-;     -- ADDRESS_REG_B                      ; CLOCK1                                                        ;
-;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                  ;
-;     -- RAM_BLOCK_TYPE                     ; AUTO                                                          ;
-;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                     ;
-+-------------------------------------------+---------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+-----------------------------------------------+
+; Parameter Name                     ; Value                ; Type                                          ;
++------------------------------------+----------------------+-----------------------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                                       ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                                    ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                                  ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                                  ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                                ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                                       ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                                       ;
+; WIDTH_A                            ; 32                   ; Signed Integer                                ;
+; WIDTHAD_A                          ; 10                   ; Signed Integer                                ;
+; NUMWORDS_A                         ; 1024                 ; Signed Integer                                ;
+; OUTDATA_REG_A                      ; UNREGISTERED         ; Untyped                                       ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                                       ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                                       ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                                       ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                                       ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                                       ;
+; WIDTH_B                            ; 1                    ; Untyped                                       ;
+; WIDTHAD_B                          ; 1                    ; Untyped                                       ;
+; NUMWORDS_B                         ; 1                    ; Untyped                                       ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                                       ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                                       ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                                       ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                                       ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                                       ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                                       ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                                       ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                                       ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                                       ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                                       ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                                       ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                                       ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                                ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                                       ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                                       ;
+; BYTE_SIZE                          ; 8                    ; Untyped                                       ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                                       ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                                       ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                                       ;
+; INIT_FILE                          ; rom.mif              ; Untyped                                       ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                                       ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                                       ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                                       ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                                       ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                                       ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                                       ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                                       ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                                       ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                                       ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                                       ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                                       ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                                       ;
+; CBXI_PARAMETER                     ; altsyncram_jvf1      ; Untyped                                       ;
++------------------------------------+----------------------+-----------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: poliriscv_sc32:u_poliriscv ;
++----------------+-------+------------------------------------------------+
+; Parameter Name ; Value ; Type                                           ;
++----------------+-------+------------------------------------------------+
+; instructions   ; 1024  ; Signed Integer                                 ;
+; datawords      ; 1024  ; Signed Integer                                 ;
+; datawidth      ; 32    ; Signed Integer                                 ;
+; addrwidth      ; 32    ; Signed Integer                                 ;
++----------------+-------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: poliriscv_sc32:u_poliriscv|datapath:dp ;
++----------------+-------+------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                       ;
++----------------+-------+------------------------------------------------------------+
+; instructions   ; 1024  ; Signed Integer                                             ;
++----------------+-------+------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs ;
++----------------+-------+------------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                         ;
++----------------+-------+------------------------------------------------------------------------------+
+; W              ; 32    ; Signed Integer                                                               ;
++----------------+-------+------------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core ;
++----------------+-------+-------------------------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                                    ;
++----------------+-------+-------------------------------------------------------------------------+
+; W              ; 32    ; Signed Integer                                                          ;
++----------------+-------+-------------------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                                            ;
++-------------------------------------------+-----------------------------------------------------------------+
+; Name                                      ; Value                                                           ;
++-------------------------------------------+-----------------------------------------------------------------+
+; Number of entity instances                ; 2                                                               ;
+; Entity Instance                           ; wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                                                     ;
+;     -- WIDTH_A                            ; 32                                                              ;
+;     -- NUMWORDS_A                         ; 1024                                                            ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                    ;
+;     -- WIDTH_B                            ; 1                                                               ;
+;     -- NUMWORDS_B                         ; 1                                                               ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                          ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                    ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                            ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                       ;
+; Entity Instance                           ; wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component    ;
+;     -- OPERATION_MODE                     ; ROM                                                             ;
+;     -- WIDTH_A                            ; 32                                                              ;
+;     -- NUMWORDS_A                         ; 1024                                                            ;
+;     -- OUTDATA_REG_A                      ; UNREGISTERED                                                    ;
+;     -- WIDTH_B                            ; 1                                                               ;
+;     -- NUMWORDS_B                         ; 1                                                               ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                                          ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                                    ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                                            ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                                       ;
++-------------------------------------------+-----------------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "poliriscv_sc32:proc|datapath:dp"                                                             ;
+; Port Connectivity Checks: "poliriscv_sc32:u_poliriscv|datapath:dp"                                                      ;
 +---------------+--------+----------+-------------------------------------------------------------------------------------+
 ; Port          ; Type   ; Severity ; Details                                                                             ;
 +---------------+--------+----------+-------------------------------------------------------------------------------------+
@@ -681,38 +654,53 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "poliriscv_sc32:proc"                                                                                                                             ;
-+---------------------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------+
-; Port                ; Type   ; Severity ; Details                                                                                                                           ;
-+---------------------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------+
-; IM_address          ; Output ; Warning  ; Output or bidir port (12 bits) is wider than the port expression (10 bits) it drives; bit(s) "IM_address[11..10]" have no fanouts ;
-; DM_address          ; Output ; Warning  ; Output or bidir port (12 bits) is wider than the port expression (10 bits) it drives; bit(s) "DM_address[11..10]" have no fanouts ;
-; pcdebug[31..20]     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                               ;
-; nextpcdebug[31..20] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                               ;
-; aluoutdebug[31..20] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                               ;
-+---------------------+--------+----------+-----------------------------------------------------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "poliriscv_sc32:u_poliriscv"                                                                        ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                ; Type   ; Severity ; Details                                                                             ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; pcdebug[31..20]     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; nextpcdebug[31..20] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; aluoutdebug[31..20] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "wishbone_mrom:wshrom"                                                                ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; Port  ; Type   ; Severity ; Details                                                                             ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
-; sel_i ; Input  ; Info     ; Stuck at VCC                                                                        ;
-; dat_o ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; ack_o ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------+--------+----------+-------------------------------------------------------------------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "wishboneram:u_ram|dmram:u_dmram"                                                                                                                    ;
++---------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                                                                                          ;
++---------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+; address ; Input  ; Warning  ; Input port expression (1 bits) is smaller than the input port (10 bits) it drives.  Extra input bit(s) "address[9..1]" will be connected to GND. ;
+; q       ; Output ; Warning  ; Output or bidir port (32 bits) is wider than the port expression (1 bits) it drives; bit(s) "q[31..1]" have no fanouts                           ;
+; q       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                              ;
++---------+--------+----------+--------------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "dmram:dm"                                                                                                                                      ;
-+------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port ; Type   ; Severity ; Details                                                                                                                                        ;
-+------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
-; data ; Input  ; Warning  ; Input port expression (1 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "data[31..1]" will be connected to GND. ;
-; q    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed.                                                            ;
-+------+--------+----------+------------------------------------------------------------------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "wishboneram:u_ram"                                                                                                                              ;
++-------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port  ; Type  ; Severity ; Details                                                                                                                                         ;
++-------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+; sel_i ; Input ; Warning  ; Input port expression (4 bits) is smaller than the input port (32 bits) it drives.  Extra input bit(s) "sel_i[31..4]" will be connected to GND. ;
++-------+-------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "wb_mux_2:wb_mux_inst"                                                                               ;
++----------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                 ; Type   ; Severity ; Details                                                                             ;
++----------------------+--------+----------+-------------------------------------------------------------------------------------+
+; wbm_rty_o            ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; wbs0_adr_o[31..10]   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; wbs0_we_o            ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; wbs0_addr            ; Input  ; Info     ; Stuck at GND                                                                        ;
+; wbs0_addr_msk[30..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; wbs0_addr_msk[31]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; wbs1_addr[30..0]     ; Input  ; Info     ; Stuck at GND                                                                        ;
+; wbs1_addr[31]        ; Input  ; Info     ; Stuck at VCC                                                                        ;
+; wbs1_addr_msk[30..0] ; Input  ; Info     ; Stuck at GND                                                                        ;
+; wbs1_addr_msk[31]    ; Input  ; Info     ; Stuck at VCC                                                                        ;
++----------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +-----------------------------------------------------+
@@ -720,30 +708,31 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; arriav_ff             ; 1049                        ;
-;     CLR               ; 57                          ;
+; arriav_ff             ; 1057                        ;
+;     CLR               ; 53                          ;
 ;     ENA               ; 992                         ;
-; arriav_lcell_comb     ; 1532                        ;
+;     ENA CLR           ; 12                          ;
+; arriav_lcell_comb     ; 1680                        ;
 ;     arith             ; 119                         ;
 ;         1 data inputs ; 54                          ;
 ;         2 data inputs ; 1                           ;
 ;         4 data inputs ; 5                           ;
 ;         5 data inputs ; 59                          ;
-;     extend            ; 492                         ;
-;         7 data inputs ; 492                         ;
-;     normal            ; 921                         ;
+;     extend            ; 491                         ;
+;         7 data inputs ; 491                         ;
+;     normal            ; 1070                        ;
 ;         0 data inputs ; 1                           ;
 ;         1 data inputs ; 6                           ;
-;         2 data inputs ; 24                          ;
-;         3 data inputs ; 105                         ;
-;         4 data inputs ; 171                         ;
-;         5 data inputs ; 165                         ;
-;         6 data inputs ; 449                         ;
+;         2 data inputs ; 51                          ;
+;         3 data inputs ; 117                         ;
+;         4 data inputs ; 223                         ;
+;         5 data inputs ; 220                         ;
+;         6 data inputs ; 452                         ;
 ; boundary_port         ; 68                          ;
 ; stratixv_ram_block    ; 32                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 17.00                       ;
-; Average LUT depth     ; 15.01                       ;
+; Max LUT depth         ; 18.00                       ;
+; Average LUT depth     ; 15.57                       ;
 +-----------------------+-----------------------------+
 
 
@@ -762,7 +751,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Thu Jul 10 13:41:07 2025
+    Info: Processing started: Fri Jul 11 15:01:41 2025
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off poliriscv -c poliriscv
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors detected
@@ -778,7 +767,7 @@ Info (12021): Found 4 design units, including 4 entities, in source file ep2.v
     Info (12023): Found entity 1: alu File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 5
     Info (12023): Found entity 2: registerfile File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 65
     Info (12023): Found entity 3: datapath File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 87
-    Info (12023): Found entity 4: poliriscv_sc32 File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 199
+    Info (12023): Found entity 4: poliriscv_sc32 File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 180
 Info (12021): Found 1 design units, including 1 entities, in source file clockgen.v
     Info (12023): Found entity 1: clockgenerator File: C:/Users/Operador/Downloads/danquartus/danQuartus/clockgen.v Line: 1
 Info (12021): Found 1 design units, including 1 entities, in source file de0_cv_golden_top.v
@@ -789,45 +778,36 @@ Info (12021): Found 1 design units, including 1 entities, in source file dmram.v
     Info (12023): Found entity 1: dmram File: C:/Users/Operador/Downloads/danquartus/danQuartus/dmram.v Line: 40
 Warning (10236): Verilog HDL Implicit Net warning at wshbram.v(29): created implicit net for "addr_i" File: C:/Users/Operador/Downloads/danquartus/danQuartus/wshbram.v Line: 29
 Warning (10236): Verilog HDL Implicit Net warning at wshbram.v(32): created implicit net for "data_o" File: C:/Users/Operador/Downloads/danquartus/danQuartus/wshbram.v Line: 32
-Warning (10236): Verilog HDL Implicit Net warning at DE0_CV_golden_top.v(166): created implicit net for "DM_DATAIM" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 166
-Warning (10236): Verilog HDL Implicit Net warning at DE0_CV_golden_top.v(206): created implicit net for "wbsram_addr" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 206
-Warning (10236): Verilog HDL Implicit Net warning at DE0_CV_golden_top.v(207): created implicit net for "wbsram_addr_msk" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 207
-Warning (10236): Verilog HDL Implicit Net warning at DE0_CV_golden_top.v(210): created implicit net for "outclk" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 210
+Warning (10236): Verilog HDL Implicit Net warning at ep2.v(372): created implicit net for "DM_address" File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 372
+Warning (10236): Verilog HDL Implicit Net warning at ep2.v(381): created implicit net for "DM_write_enable" File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 381
+Warning (10236): Verilog HDL Implicit Net warning at DE0_CV_golden_top.v(157): created implicit net for "wbsrom_addr" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 157
+Warning (10236): Verilog HDL Implicit Net warning at DE0_CV_golden_top.v(158): created implicit net for "wbsrom_addr_msk" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 158
+Warning (10236): Verilog HDL Implicit Net warning at DE0_CV_golden_top.v(159): created implicit net for "sel_i_rom" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 159
+Warning (10236): Verilog HDL Implicit Net warning at DE0_CV_golden_top.v(160): created implicit net for "wbsram_addr" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 160
+Warning (10236): Verilog HDL Implicit Net warning at DE0_CV_golden_top.v(161): created implicit net for "wbsram_addr_msk" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 161
+Warning (10236): Verilog HDL Implicit Net warning at DE0_CV_golden_top.v(218): created implicit net for "outclk" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 218
+Warning (10236): Verilog HDL Implicit Net warning at DE0_CV_golden_top.v(264): created implicit net for "rst" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 264
+Warning (10222): Verilog HDL Parameter Declaration warning at ep2.v(214): Parameter Declaration in module "poliriscv_sc32" behaves as a Local Parameter Declaration because the module has a Module Parameter Port List File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 214
 Info (12127): Elaborating entity "DE0_CV_golden_top" for the top level hierarchy
-Warning (10036): Verilog HDL or VHDL warning at DE0_CV_golden_top.v(206): object "wbsram_addr" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 206
-Warning (10036): Verilog HDL or VHDL warning at DE0_CV_golden_top.v(207): object "wbsram_addr_msk" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 207
-Warning (10036): Verilog HDL or VHDL warning at DE0_CV_golden_top.v(197): object "wbsrom_addr" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 197
-Warning (10036): Verilog HDL or VHDL warning at DE0_CV_golden_top.v(198): object "wbsrom_addr_msk" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 198
-Warning (10036): Verilog HDL or VHDL warning at DE0_CV_golden_top.v(229): object "state_reg" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 229
-Warning (10230): Verilog HDL assignment warning at DE0_CV_golden_top.v(206): truncated value with size 10 to match size of target (1) File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 206
-Warning (10230): Verilog HDL assignment warning at DE0_CV_golden_top.v(207): truncated value with size 10 to match size of target (1) File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 207
+Warning (10036): Verilog HDL or VHDL warning at DE0_CV_golden_top.v(157): object "wbsrom_addr" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 157
+Warning (10036): Verilog HDL or VHDL warning at DE0_CV_golden_top.v(158): object "wbsrom_addr_msk" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 158
+Warning (10036): Verilog HDL or VHDL warning at DE0_CV_golden_top.v(159): object "sel_i_rom" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 159
+Warning (10036): Verilog HDL or VHDL warning at DE0_CV_golden_top.v(160): object "wbsram_addr" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 160
+Warning (10036): Verilog HDL or VHDL warning at DE0_CV_golden_top.v(161): object "wbsram_addr_msk" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 161
+Warning (10230): Verilog HDL assignment warning at DE0_CV_golden_top.v(157): truncated value with size 10 to match size of target (1) File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 157
+Warning (10230): Verilog HDL assignment warning at DE0_CV_golden_top.v(158): truncated value with size 10 to match size of target (1) File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 158
+Warning (10230): Verilog HDL assignment warning at DE0_CV_golden_top.v(159): truncated value with size 4 to match size of target (1) File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 159
+Warning (10230): Verilog HDL assignment warning at DE0_CV_golden_top.v(160): truncated value with size 10 to match size of target (1) File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 160
+Warning (10230): Verilog HDL assignment warning at DE0_CV_golden_top.v(161): truncated value with size 10 to match size of target (1) File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 161
 Warning (10034): Output port "HEX5" at DE0_CV_golden_top.v(115) has no driver File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 115
 Warning (10034): Output port "LEDR" at DE0_CV_golden_top.v(123) has no driver File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 123
-Info (12128): Elaborating entity "mrom" for hierarchy "mrom:im" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 165
-Info (12128): Elaborating entity "altsyncram" for hierarchy "mrom:im|altsyncram:altsyncram_component" File: C:/Users/Operador/Downloads/danquartus/danQuartus/mrom.v Line: 82
-Info (12130): Elaborated megafunction instantiation "mrom:im|altsyncram:altsyncram_component" File: C:/Users/Operador/Downloads/danquartus/danQuartus/mrom.v Line: 82
-Info (12133): Instantiated megafunction "mrom:im|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/Operador/Downloads/danquartus/danQuartus/mrom.v Line: 82
-    Info (12134): Parameter "address_aclr_a" = "NONE"
-    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
-    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
-    Info (12134): Parameter "init_file" = "rom.mif"
-    Info (12134): Parameter "intended_device_family" = "Cyclone V"
-    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
-    Info (12134): Parameter "lpm_type" = "altsyncram"
-    Info (12134): Parameter "numwords_a" = "1024"
-    Info (12134): Parameter "operation_mode" = "ROM"
-    Info (12134): Parameter "outdata_aclr_a" = "NONE"
-    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
-    Info (12134): Parameter "widthad_a" = "10"
-    Info (12134): Parameter "width_a" = "32"
-    Info (12134): Parameter "width_byteena_a" = "1"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_jvf1.tdf
-    Info (12023): Found entity 1: altsyncram_jvf1 File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_jvf1" for hierarchy "mrom:im|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated" File: c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12128): Elaborating entity "dmram" for hierarchy "dmram:dm" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 166
-Info (12128): Elaborating entity "altsyncram" for hierarchy "dmram:dm|altsyncram:altsyncram_component" File: C:/Users/Operador/Downloads/danquartus/danQuartus/dmram.v Line: 86
-Info (12130): Elaborated megafunction instantiation "dmram:dm|altsyncram:altsyncram_component" File: C:/Users/Operador/Downloads/danquartus/danQuartus/dmram.v Line: 86
-Info (12133): Instantiated megafunction "dmram:dm|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/Operador/Downloads/danquartus/danQuartus/dmram.v Line: 86
+Info (12128): Elaborating entity "wb_mux_2" for hierarchy "wb_mux_2:wb_mux_inst" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 260
+Info (12128): Elaborating entity "wishboneram" for hierarchy "wishboneram:u_ram" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 273
+Warning (10034): Output port "dat_o" at wshbram.v(11) has no driver File: C:/Users/Operador/Downloads/danquartus/danQuartus/wshbram.v Line: 11
+Info (12128): Elaborating entity "dmram" for hierarchy "wishboneram:u_ram|dmram:u_dmram" File: C:/Users/Operador/Downloads/danquartus/danQuartus/wshbram.v Line: 33
+Info (12128): Elaborating entity "altsyncram" for hierarchy "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component" File: C:/Users/Operador/Downloads/danquartus/danQuartus/dmram.v Line: 86
+Info (12130): Elaborated megafunction instantiation "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component" File: C:/Users/Operador/Downloads/danquartus/danQuartus/dmram.v Line: 86
+Info (12133): Instantiated megafunction "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/Operador/Downloads/danquartus/danQuartus/dmram.v Line: 86
     Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
     Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
     Info (12134): Parameter "intended_device_family" = "Cyclone V"
@@ -844,99 +824,99 @@ Info (12133): Instantiated megafunction "dmram:dm|altsyncram:altsyncram_componen
     Info (12134): Parameter "width_byteena_a" = "1"
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_ocl1.tdf
     Info (12023): Found entity 1: altsyncram_ocl1 File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 28
-Info (12128): Elaborating entity "altsyncram_ocl1" for hierarchy "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated" File: c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
-Info (12128): Elaborating entity "wishbone_mrom" for hierarchy "wishbone_mrom:wshrom" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 219
-Info (12128): Elaborating entity "poliriscv_sc32" for hierarchy "poliriscv_sc32:proc" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 247
-Warning (10036): Verilog HDL or VHDL warning at ep2.v(279): object "rfi_rd" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 279
-Warning (10230): Verilog HDL assignment warning at ep2.v(307): truncated value with size 32 to match size of target (12) File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 307
-Warning (10270): Verilog HDL Case Statement warning at ep2.v(341): incomplete case statement has no default case item File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 341
-Warning (10270): Verilog HDL Case Statement warning at ep2.v(398): incomplete case statement has no default case item File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 398
-Warning (10270): Verilog HDL Case Statement warning at ep2.v(327): incomplete case statement has no default case item File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 327
-Info (12128): Elaborating entity "datapath" for hierarchy "poliriscv_sc32:proc|datapath:dp" File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 304
-Warning (10036): Verilog HDL or VHDL warning at ep2.v(184): object "proxpc" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 184
-Warning (10240): Verilog HDL Always Construct warning at ep2.v(172): inferring latch(es) for variable "temp_pc", which holds its previous value in one or more paths through the always construct File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 172
-Info (12128): Elaborating entity "registerfile" for hierarchy "poliriscv_sc32:proc|datapath:dp|registerfile:regs" File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 120
-Info (12128): Elaborating entity "alu" for hierarchy "poliriscv_sc32:proc|datapath:dp|alu:alu_core" File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 151
+Info (12128): Elaborating entity "altsyncram_ocl1" for hierarchy "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated" File: c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12128): Elaborating entity "wishbone_mrom" for hierarchy "wishbone_mrom:u_rom" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 286
+Info (12128): Elaborating entity "mrom" for hierarchy "wishbone_mrom:u_rom|mrom:rom" File: C:/Users/Operador/Downloads/danquartus/danQuartus/wshbrom.v Line: 27
+Info (12128): Elaborating entity "altsyncram" for hierarchy "wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component" File: C:/Users/Operador/Downloads/danquartus/danQuartus/mrom.v Line: 82
+Info (12130): Elaborated megafunction instantiation "wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component" File: C:/Users/Operador/Downloads/danquartus/danQuartus/mrom.v Line: 82
+Info (12133): Instantiated megafunction "wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/Operador/Downloads/danquartus/danQuartus/mrom.v Line: 82
+    Info (12134): Parameter "address_aclr_a" = "NONE"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "rom.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "1024"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "UNREGISTERED"
+    Info (12134): Parameter "widthad_a" = "10"
+    Info (12134): Parameter "width_a" = "32"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_jvf1.tdf
+    Info (12023): Found entity 1: altsyncram_jvf1 File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 28
+Info (12128): Elaborating entity "altsyncram_jvf1" for hierarchy "wishbone_mrom:u_rom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated" File: c:/intelfpga_lite/20.1/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12128): Elaborating entity "poliriscv_sc32" for hierarchy "poliriscv_sc32:u_poliriscv" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 313
+Warning (10036): Verilog HDL or VHDL warning at ep2.v(381): object "DM_write_enable" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 381
+Warning (10036): Verilog HDL or VHDL warning at ep2.v(346): object "rfi_rd" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 346
+Warning (10235): Verilog HDL Always Construct warning at ep2.v(243): variable "ACK_I" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 243
+Warning (10235): Verilog HDL Always Construct warning at ep2.v(252): variable "ACK_I" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 252
+Warning (10235): Verilog HDL Always Construct warning at ep2.v(253): variable "DAT_I" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 253
+Warning (10235): Verilog HDL Always Construct warning at ep2.v(267): variable "ACK_I" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 267
+Warning (10235): Verilog HDL Always Construct warning at ep2.v(276): variable "ACK_I" is read inside the Always Construct but isn't in the Always Construct's Event Control File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 276
+Warning (10240): Verilog HDL Always Construct warning at ep2.v(233): inferring latch(es) for variable "CYC_O", which holds its previous value in one or more paths through the always construct File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 233
+Warning (10240): Verilog HDL Always Construct warning at ep2.v(233): inferring latch(es) for variable "STB_O", which holds its previous value in one or more paths through the always construct File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 233
+Warning (10230): Verilog HDL assignment warning at ep2.v(372): truncated value with size 12 to match size of target (1) File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 372
+Warning (10270): Verilog HDL Case Statement warning at ep2.v(405): incomplete case statement has no default case item File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 405
+Warning (10270): Verilog HDL Case Statement warning at ep2.v(462): incomplete case statement has no default case item File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 462
+Warning (10270): Verilog HDL Case Statement warning at ep2.v(391): incomplete case statement has no default case item File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 391
+Warning (10034): Output port "SEL_O" at ep2.v(204) has no driver File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 204
+Info (10041): Inferred latch for "STB_O" at ep2.v(233) File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 233
+Info (10041): Inferred latch for "CYC_O" at ep2.v(233) File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 233
+Info (12128): Elaborating entity "datapath" for hierarchy "poliriscv_sc32:u_poliriscv|datapath:dp" File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 369
+Info (12128): Elaborating entity "registerfile" for hierarchy "poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs" File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 119
+Info (12128): Elaborating entity "alu" for hierarchy "poliriscv_sc32:u_poliriscv|datapath:dp|alu:alu_core" File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 147
 Warning (10036): Verilog HDL or VHDL warning at ep2.v(26): object "maiorque" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 26
 Warning (10036): Verilog HDL or VHDL warning at ep2.v(27): object "maiorque_unsigned" assigned a value but never read File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 27
-Info (12128): Elaborating entity "hexdecoder" for hierarchy "hexdecoder:hex5" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 285
-Info (12128): Elaborating entity "clockgenerator" for hierarchy "clockgenerator:clkg" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 295
+Info (12128): Elaborating entity "hexdecoder" for hierarchy "hexdecoder:hex5" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 354
+Info (12128): Elaborating entity "clockgenerator" for hierarchy "clockgenerator:clkg" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 364
 Warning (10240): Verilog HDL Always Construct warning at clockgen.v(24): inferring latch(es) for variable "outclk", which holds its previous value in one or more paths through the always construct File: C:/Users/Operador/Downloads/danquartus/danQuartus/clockgen.v Line: 24
 Info (10041): Inferred latch for "outclk" at clockgen.v(26) File: C:/Users/Operador/Downloads/danquartus/danQuartus/clockgen.v Line: 26
 Warning (14284): Synthesized away the following node(s):
     Warning (14285): Synthesized away the following RAM node(s):
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[0]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 35
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[1]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 56
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[2]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 77
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[3]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 98
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[4]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 119
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[5]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 140
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[6]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 161
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[7]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 182
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[8]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 203
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[9]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 224
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[10]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 245
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[11]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 266
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[12]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 287
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[13]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 308
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[14]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 329
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[15]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 350
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[16]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 371
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[17]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 392
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[18]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 413
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[19]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 434
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[20]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 455
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[21]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 476
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[22]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 497
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[23]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 518
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[24]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 539
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[25]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 560
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[26]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 581
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[27]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 602
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[28]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 623
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[29]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 644
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[30]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 665
-        Warning (14320): Synthesized away node "wishbone_mrom:wshrom|mrom:rom|altsyncram:altsyncram_component|altsyncram_jvf1:auto_generated|q_a[31]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_jvf1.tdf Line: 686
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[0]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 37
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[1]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 59
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[2]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 81
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[3]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 103
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[4]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 125
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[5]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 147
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[6]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 169
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[7]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 191
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[8]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 213
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[9]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 235
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[10]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 257
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[11]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 279
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[12]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 301
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[13]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 323
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[14]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 345
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[15]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 367
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[16]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 389
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[17]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 411
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[18]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 433
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[19]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 455
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[20]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 477
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[21]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 499
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[22]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 521
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[23]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 543
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[24]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 565
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[25]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 587
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[26]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 609
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[27]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 631
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[28]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 653
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[29]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 675
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[30]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 697
-        Warning (14320): Synthesized away node "dmram:dm|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[31]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 719
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[0]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 37
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[1]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 59
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[2]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 81
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[3]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 103
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[4]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 125
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[5]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 147
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[6]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 169
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[7]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 191
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[8]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 213
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[9]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 235
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[10]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 257
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[11]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 279
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[12]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 301
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[13]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 323
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[14]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 345
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[15]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 367
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[16]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 389
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[17]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 411
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[18]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 433
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[19]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 455
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[20]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 477
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[21]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 499
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[22]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 521
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[23]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 543
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[24]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 565
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[25]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 587
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[26]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 609
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[27]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 631
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[28]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 653
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[29]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 675
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[30]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 697
+        Warning (14320): Synthesized away node "wishboneram:u_ram|dmram:u_dmram|altsyncram:altsyncram_component|altsyncram_ocl1:auto_generated|q_a[31]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/db/altsyncram_ocl1.tdf Line: 719
 Info (276014): Found 1 instances of uninferred RAM logic
-    Info (276007): RAM logic "poliriscv_sc32:proc|datapath:dp|registerfile:regs|registerfile" is uninferred due to asynchronous read logic File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 73
+    Info (276007): RAM logic "poliriscv_sc32:u_poliriscv|datapath:dp|registerfile:regs|registerfile" is uninferred due to asynchronous read logic File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 73
 Warning (14026): LATCH primitive "clockgenerator:clkg|outclk" is permanently enabled File: C:/Users/Operador/Downloads/danquartus/danQuartus/clockgen.v Line: 6
 Warning (19016): Clock multiplexers are found and protected
     Warning (19017): Found clock multiplexer clockgenerator:clkg|outclk~0 File: C:/Users/Operador/Downloads/danquartus/danQuartus/clockgen.v Line: 6
     Warning (19017): Found clock multiplexer clockgenerator:clkg|outclk~1 File: C:/Users/Operador/Downloads/danquartus/danQuartus/clockgen.v Line: 6
     Warning (19017): Found clock multiplexer clockgenerator:clkg|outclk~2 File: C:/Users/Operador/Downloads/danquartus/danQuartus/clockgen.v Line: 6
 Warning (12241): 2 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "poliriscv_sc32:u_poliriscv|STB_O" merged with LATCH primitive "poliriscv_sc32:u_poliriscv|CYC_O" File: C:/Users/Operador/Downloads/danquartus/danQuartus/ep2.v Line: 203
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "HEX5[0]" is stuck at GND File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 115
     Warning (13410): Pin "HEX5[1]" is stuck at GND File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 115
@@ -956,7 +936,7 @@ Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "LEDR[8]" is stuck at GND File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 123
     Warning (13410): Pin "LEDR[9]" is stuck at GND File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 123
 Info (286030): Timing-Driven Synthesis is running
-Info (17049): 7 registers lost all their fanouts during netlist optimizations.
+Info (17049): 10 registers lost all their fanouts during netlist optimizations.
 Info (144001): Generated suppressed messages file C:/Users/Operador/Downloads/danquartus/danQuartus/output_files/poliriscv.map.smsg
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -969,16 +949,16 @@ Warning (21074): Design contains 8 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SW[7]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 154
     Warning (15610): No output dependent on input pin "SW[8]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 154
     Warning (15610): No output dependent on input pin "SW[9]" File: C:/Users/Operador/Downloads/danquartus/danQuartus/DE0_CV_golden_top.v Line: 154
-Info (21057): Implemented 2638 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 2787 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 16 input pins
     Info (21059): Implemented 52 output pins
-    Info (21061): Implemented 2538 logic cells
+    Info (21061): Implemented 2687 logic cells
     Info (21064): Implemented 32 RAM segments
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 125 warnings
-    Info: Peak virtual memory: 4854 megabytes
-    Info: Processing ended: Thu Jul 10 13:41:31 2025
-    Info: Elapsed time: 00:00:24
-    Info: Total CPU time (on all processors): 00:00:38
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 110 warnings
+    Info: Peak virtual memory: 4858 megabytes
+    Info: Processing ended: Fri Jul 11 15:02:03 2025
+    Info: Elapsed time: 00:00:22
+    Info: Total CPU time (on all processors): 00:00:37
 
 
 +------------------------------------------+

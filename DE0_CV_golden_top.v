@@ -154,146 +154,215 @@ module DE0_CV_golden_top (
 );
 
 
-wire [9:0]IM_ADDR;
-wire [9:0]DM_ADDR;
-
-wire [31:0] IM_DATA;
-wire [31:0] DM_DATAIN;
-wire [31:0] DM_DATAOUT;
-wire wren;
-
-mrom im(IM_ADDR, CLOCK_50, IM_DATA);
-dmram dm(DM_ADDR, CLOCK_50, DM_DATAIM, wren, DM_DATAOUT);
-
-
-
-//module poliriscv_sc32 #(
-//    parameter instructions = 1024, // Number of instructions (32 bits each)
-//    parameter datawords = 1024     // Number of words (32 bits each)
-//)(                  
-//    input clk, rst,
-//    input [31:0] IM_data, DM_data_i,
-//    output [ $clog2(instructions * 4) - 1 : 0 ] IM_address, DM_address,
-//    output [31:0] DM_data_o,
-//    output DM_write_enable,
-    
-    
-//DEBUG
-//    output wire [31:0] pcdebug,
-//    output wire [31:0] nextpcdebug,
-//    output wire [31:0] aluoutdebug
-//
-//);
-
-wire [9:0]   wb_adr_o;  // ADR_O() address
-wire [31:0]   wb_dat_i;   // DAT_I() data in
-wire [31:0]   wb_dat_o;   // DAT_O() data out
-wire  wb_we_o;    // WE_O write enable output
-wire [31:0] wb_sel_o;   // SEL_O() select output
-wire  wb_stb_o;   // STB_O strobe output
-wire  wb_ack_i;   // ACK_I acknowledge input
-wire  wb_err_i;   // ERR_I error input
-wire  wb_cyc_o;   // CYC_O 
-wire [9:0]   wbsrom_addr;     // Slave address prefix
-wire [9:0]   wbsrom_addr_msk; // Slave address prefix mask
-wire [3:0] sel_i_rom;
-
 assign wbsrom_addr = 10'b0000000000;
-
-assign wbsrom_addr_msk = 10'b1111111111;
+assign wbsrom_addr_msk = 10'b1000000000;
 assign sel_i_rom = 4'b1111;
-
 assign wbsram_addr = 10'b1000000000;
-assign wbsram_addr_msk = 10'b0111111111;
+assign wbsram_addr_msk = 10'b1000000000;
 
-wishbone_mrom wshrom (
-    .clk_i(outclk),        // Connects 'clk_i' port of wishbone_mrom to 'outclk' signal in current module
-    .rst_i(!RESET_N),      // Connects 'rst_i' port to inverted 'RESET_N'
-    .cyc_i(wb_cyc_o),
-    .stb_i(wb_stb_o),
-    .sel_i(sel_i_rom),     // sel_i is 4 bits wide [3:0]
-    .dat_i(wb_dat_i),      // dat_i is 32 bits wide [31:0]
-    .addr_i(wb_adr_o),     // addr_i is 10 bits wide [9:0]
-    .dat_o(wb_dat_o),      // dat_o is 32 bits wide [31:0]
-    .ack_o(wb_ack_i)
+
+	
+localparam DATA_WIDTH   = 32;
+localparam ADDR_WIDTH   = 32;
+localparam SELECT_WIDTH = DATA_WIDTH / 8;
+
+// Master interface
+wire [ADDR_WIDTH-1:0]   wbm_adr_i;
+wire [DATA_WIDTH-1:0]   wbm_dat_i;
+wire [DATA_WIDTH-1:0]   wbm_dat_o;
+wire                    wbm_we_i;
+wire [SELECT_WIDTH-1:0] wbm_sel_i;
+wire                    wbm_stb_i;
+wire                    wbm_ack_o;
+wire                    wbm_err_o;
+wire                    wbm_rty_o;
+wire                    wbm_cyc_i;
+
+// Slave 0 (ROM) interface
+wire [ADDR_WIDTH-1:0]   wbs0_adr_o;
+wire [DATA_WIDTH-1:0]   wbs0_dat_i;
+wire [DATA_WIDTH-1:0]   wbs0_dat_o;
+wire                    wbs0_we_o;
+wire [SELECT_WIDTH-1:0] wbs0_sel_o;
+wire                    wbs0_stb_o;
+wire                    wbs0_ack_i;
+wire                    wbs0_err_i;
+wire                    wbs0_rty_i;
+wire                    wbs0_cyc_o;
+
+// Slave 1 (RAM) interface
+wire [ADDR_WIDTH-1:0]   wbs1_adr_o;
+wire [DATA_WIDTH-1:0]   wbs1_dat_i;
+wire [DATA_WIDTH-1:0]   wbs1_dat_o;
+wire                    wbs1_we_o;
+wire [SELECT_WIDTH-1:0] wbs1_sel_o;
+wire                    wbs1_stb_o;
+wire                    wbs1_ack_i;
+wire                    wbs1_err_i;
+wire                    wbs1_rty_i;
+wire                    wbs1_cyc_o;
+
+// Endereços base e máscaras
+wire [ADDR_WIDTH-1:0]   wbs0_addr     = 32'h00000000;  // ROM base address
+wire [ADDR_WIDTH-1:0]   wbs0_addr_msk = 32'h80000000;  // ROM address mask
+
+wire [ADDR_WIDTH-1:0]   wbs1_addr     = 32'h80000000;  // RAM base address
+wire [ADDR_WIDTH-1:0]   wbs1_addr_msk = 32'h80000000;  // RAM address mask
+
+
+wb_mux_2 #(
+    .DATA_WIDTH(DATA_WIDTH),
+    .ADDR_WIDTH(ADDR_WIDTH),
+    .SELECT_WIDTH(SELECT_WIDTH)
+) wb_mux_inst (
+    .clk(outclk),
+    .rst(!RESET_N),
+
+    // Master
+    .wbm_adr_i(wbm_adr_i),
+    .wbm_dat_i(wbm_dat_i),
+    .wbm_dat_o(wbm_dat_o),
+    .wbm_we_i(wbm_we_i),
+    .wbm_sel_i(wbm_sel_i),
+    .wbm_stb_i(wbm_stb_i),
+    .wbm_ack_o(wbm_ack_o),
+    .wbm_err_o(wbm_err_o),
+    .wbm_rty_o(wbm_rty_o),
+    .wbm_cyc_i(wbm_cyc_i),
+
+    // Slave 0 (ROM)
+    .wbs0_adr_o(wbs0_adr_o),
+    .wbs0_dat_i(wbs0_dat_i),
+    .wbs0_dat_o(wbs0_dat_o),
+    .wbs0_we_o(wbs0_we_o),
+    .wbs0_sel_o(wbs0_sel_o),
+    .wbs0_stb_o(wbs0_stb_o),
+    .wbs0_ack_i(wbs0_ack_i),
+    .wbs0_err_i(wbs0_err_i),
+    .wbs0_rty_i(wbs0_rty_i),
+    .wbs0_cyc_o(wbs0_cyc_o),
+    .wbs0_addr(wbs0_addr),
+    .wbs0_addr_msk(wbs0_addr_msk),
+
+    // Slave 1 (RAM)
+    .wbs1_adr_o(wbs1_adr_o),
+    .wbs1_dat_i(wbs1_dat_i),
+    .wbs1_dat_o(wbs1_dat_o),
+    .wbs1_we_o(wbs1_we_o),
+    .wbs1_sel_o(wbs1_sel_o),
+    .wbs1_stb_o(wbs1_stb_o),
+    .wbs1_ack_i(wbs1_ack_i),
+    .wbs1_err_i(wbs1_err_i),
+    .wbs1_rty_i(wbs1_rty_i),
+    .wbs1_cyc_o(wbs1_cyc_o),
+    .wbs1_addr(wbs1_addr),
+    .wbs1_addr_msk(wbs1_addr_msk)
 );
 
+wishboneram u_ram (
+    .clk_i(outclk),
+    .rst_i(rst),
+    .cyc_i(wbs1_cyc_o),
+    .stb_i(wbs1_stb_o),
+    .we_i(wbs1_we_o),
+    .sel_i(wbs1_sel_o),     // 4 bits (SELECT_WIDTH)
+    .dat_i(wbs1_dat_o),     // dados de saída do mux para o RAM (entrada da RAM)
+    .adr_i(wbs1_adr_o),     // endereço completo de 32 bits
+    .dat_o(wbs1_dat_i),     // dados de saída da RAM
+    .ack_o(wbs1_ack_i)
+);
 	
-localparam [2:0]
-	STATE_IDLE = 3'b000,
-	STATE_HEADER = 3'b001,
-	STATE_READ_ROM = 3'b010,
-	STATE_READ_RAM = 3'b011,
-	STATE_WRITE_RAM = 3'b100;
 
-reg[2:0] state_reg = STATE_IDLE;
-reg[2:0] state_next;
+wishbone_mrom u_rom (
+    .clk_i(outclk),
+    .rst_i(!RESET_N),
+    .cyc_i(wbs0_cyc_o),
+    .stb_i(wbs0_stb_o),
+    .sel_i(wbs0_sel_o),
+    .dat_i(wbs0_dat_o),
+    .addr_i(wbs0_adr_o[9:0]),
+    .dat_o(wbs0_dat_i),
+    .ack_o(wbs0_ack_i)
+);
+
+poliriscv_sc32 #(
+    .instructions(1024),
+    .datawords(1024),
+    .datawidth(32),
+    .addrwidth(32)
+) u_poliriscv (
+    .clk(outclk),
+    .rst(!RESET_N),
+
+    // Debug outputs (pode usar ou deixar desconectado)
+    .pcdebug(pc),
+    .nextpcdebug(nextpc),
+    .aluoutdebug(aluout),
+
+    // Wishbone interface
+    .ACK_I(wbm_ack_o),
+    .ERR_I(wbm_err_o),
+    .DAT_I(wbm_dat_o),
+
+    .DAT_O(wbm_dat_i),
+    .ADR_O(wbm_adr_i),
+    .CYC_O(wbm_cyc_i),
+    .STB_O(wbm_stb_i),
+    .SEL_O(wbm_sel_i),
+    .WE_O(wbm_we_i)
+);
+
+wire [31:0] pc;
+wire [31:0] nextpc;
+wire [31:0] aluout;
 	
 	
+wire [3:0]hex1out; 
+assign hex1out=   
+			(SW[3:0] == 0) ? pc[3:0]:
+      	      (SW[3:0] == 1) ? nextpc[3:0]:
+			(SW[3:0] == 2) ? aluout[3:0]:
+			wbm_dat_i[3:0];
+
+wire [3:0]hex2out; 
+assign hex2out  =
+			(SW[3:0] == 0) ? pc[7:4]:
+			(SW[3:0] == 1) ? nextpc[7:4]:
+			(SW[3:0] == 2) ? aluout[7:4]:
+			wbm_dat_i[7:4];
 	
-always@(*)begin
-	
-		
-	
-	
-end
-		
-	
-	poliriscv_sc32	proc(outclk, !RESET_N, IM_DATA, DM_DATAIN,IM_ADDR, DM_ADDR,
-	DM_DATAOUT, wren,
-	//SAIDAS DE DEBUG
-	pc,
-	nextpc,
-	aluout);
-	
-	
-	wire [31:0] pc;
-	wire [31:0] nextpc;
-	wire [31:0] aluout;
-	
-	
-	wire [3:0]hex1out; 
-	assign hex1out= 	(SW[3:0] == 0) ? pc[3:0]:
-							(SW[3:0] == 1) ? nextpc[3:0]:
-							(SW[3:0] == 2) ? aluout[3:0]:
-							IM_DATA[3:0];
-	
-	wire [3:0]hex2out; 
-	assign hex2out  = 	(SW[3:0] == 0) ? pc[7:4]:
-								(SW[3:0] == 1) ? nextpc[7:4]:
-								(SW[3:0] == 2) ? aluout[7:4]:
-								IM_DATA[7:4];
-	
-	wire [3:0]hex3out;
-	assign hex3out= 	(SW[3:0] == 0) ? pc[11:8]:
-							(SW[3:0] == 1) ? nextpc[11:8]:
-							(SW[3:0] == 2) ? aluout[11:8]:
-							IM_DATA[11:8];
+wire [3:0]hex3out;
+assign hex3out= 	
+			(SW[3:0] == 0) ? pc[11:8]:
+			(SW[3:0] == 1) ? nextpc[11:8]:
+			(SW[3:0] == 2) ? aluout[11:8]:
+			wbm_dat_i[11:8];
 								
-	wire [3:0]hex4out;
-	assign hex4out = 	(SW[3:0] == 0) ? pc[15:12]:	
-							(SW[3:0] == 1) ? nextpc[15:12]:
-							(SW[3:0] == 2) ? aluout[15:12]:
-							IM_DATA[15:12];
+wire [3:0]hex4out;
+assign hex4out = 	
+			(SW[3:0] == 0) ? pc[15:12]:	
+			(SW[3:0] == 1) ? nextpc[15:12]:
+			(SW[3:0] == 2) ? aluout[15:12]:
+			wbm_dat_i[15:12];
 	
-	wire [3:0]hex5out;
-	assign hex5out	= 	(SW[3:0] == 0) ? pc[19:16]:	
-							(SW[3:0] == 1) ? nextpc[19:16]:
-							(SW[3:0] == 2) ? aluout[19:16]:
-							IM_DATA[19:16];
+wire [3:0]hex5out;
+assign hex5out =  (SW[3:0] == 0) ? pc[19:16]:	
+			(SW[3:0] == 1) ? nextpc[19:16]:
+			(SW[3:0] == 2) ? aluout[19:16]:
+			wbm_dat_i[19:16];
 	
-	hexdecoder hex5(hex5out, HEX4);
-	hexdecoder hex4(hex4out, HEX3);
-	hexdecoder hex3(hex3out, HEX2);
-	hexdecoder hex2(hex2out, HEX1);
-	hexdecoder hex1(hex1out, HEX0);
-	//hexdecoder hex1(SW[3:0], HEX0);
+hexdecoder hex5(hex5out, HEX4);
+hexdecoder hex4(hex4out, HEX3);
+hexdecoder hex3(hex3out, HEX2);
+hexdecoder hex2(hex2out, HEX1);
+hexdecoder hex1(hex1out, HEX0);
+//hexdecoder hex1(SW[3:0], HEX0);
+
 	
 	
 	
-	
-	clockgenerator clkg(CLOCK_50,!RESET_N, SW[5:4], outclk);
-	//hexdecoder hex2({{3{1'b0}}, {outclk}}, HEX1);
+clockgenerator clkg(CLOCK_50,!RESET_N, SW[5:4], outclk);
+//hexdecoder hex2({{3{1'b0}}, {outclk}}, HEX1);
 
 endmodule
 

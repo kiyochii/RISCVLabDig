@@ -1,0 +1,10 @@
+
+State Machine - |DE0_CV_golden_top|poliriscv_sc32:u_poliriscv|state
+Name state.STATE_WRITE_3 state.STATE_WRITE_2 state.STATE_WRITE_1 state.STATE_READ_3 state.STATE_READ_2 state.STATE_READ_1 state.STATE_IDLE 
+state.STATE_IDLE 0 0 0 0 0 0 0 
+state.STATE_READ_1 0 0 0 0 0 1 1 
+state.STATE_READ_2 0 0 0 0 1 0 1 
+state.STATE_READ_3 0 0 0 1 0 0 1 
+state.STATE_WRITE_1 0 0 1 0 0 0 1 
+state.STATE_WRITE_2 0 1 0 0 0 0 1 
+state.STATE_WRITE_3 1 0 0 0 0 0 1 

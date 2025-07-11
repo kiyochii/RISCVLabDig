@@ -1,5 +1,5 @@
 Assembler report for poliriscv
-Thu Jul 10 13:45:36 2025
+Fri Jul 11 15:05:24 2025
 Quartus Prime Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
 
 
@@ -39,7 +39,7 @@ https://fpgasoftware.intel.com/eula.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Thu Jul 10 13:45:36 2025 ;
+; Assembler Status      ; Successful - Fri Jul 11 15:05:24 2025 ;
 ; Revision Name         ; poliriscv                             ;
 ; Top-level Entity Name ; DE0_CV_golden_top                     ;
 ; Family                ; Cyclone V                             ;
@@ -69,8 +69,8 @@ https://fpgasoftware.intel.com/eula.
 +----------------+---------------------------------------------------------------------------------------+
 ; Option         ; Setting                                                                               ;
 +----------------+---------------------------------------------------------------------------------------+
-; JTAG usercode  ; 0x00996299                                                                            ;
-; Checksum       ; 0x00996299                                                                            ;
+; JTAG usercode  ; 0x009A9D58                                                                            ;
+; Checksum       ; 0x009A9D58                                                                            ;
 +----------------+---------------------------------------------------------------------------------------+
 
 
@@ -80,7 +80,7 @@ https://fpgasoftware.intel.com/eula.
 ; Option             ; Setting                                                                           ;
 +--------------------+-----------------------------------------------------------------------------------+
 ; JTAG usercode      ; 0x00000000                                                                        ;
-; Checksum           ; 0x7431F629                                                                        ;
+; Checksum           ; 0x7432399B                                                                        ;
 ; Compression Ratio  ; 3                                                                                 ;
 +--------------------+-----------------------------------------------------------------------------------+
 
@@ -91,14 +91,14 @@ https://fpgasoftware.intel.com/eula.
 Info: *******************************************************************
 Info: Running Quartus Prime Assembler
     Info: Version 20.1.1 Build 720 11/11/2020 SJ Lite Edition
-    Info: Processing started: Thu Jul 10 13:45:28 2025
+    Info: Processing started: Fri Jul 11 15:05:18 2025
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off poliriscv -c poliriscv
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
 Info (115030): Assembler is generating device programming files
 Info: Quartus Prime Assembler was successful. 0 errors, 1 warning
     Info: Peak virtual memory: 4849 megabytes
-    Info: Processing ended: Thu Jul 10 13:45:36 2025
-    Info: Elapsed time: 00:00:08
+    Info: Processing ended: Fri Jul 11 15:05:25 2025
+    Info: Elapsed time: 00:00:07
     Info: Total CPU time (on all processors): 00:00:07
 
 

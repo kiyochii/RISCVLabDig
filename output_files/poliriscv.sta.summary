@@ -3,99 +3,147 @@ Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1100mV 85C Model Setup 'SW[4]'
-Slack : -19.641
-TNS   : -18057.818
+Slack : -18.046
+TNS   : -20512.420
+
+Type  : Slow 1100mV 85C Model Setup 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : -8.321
+TNS   : -8.321
 
 Type  : Slow 1100mV 85C Model Setup 'CLOCK_50'
-Slack : -6.963
-TNS   : -282.343
-
-Type  : Slow 1100mV 85C Model Hold 'SW[4]'
-Slack : -1.426
-TNS   : -542.001
+Slack : -1.814
+TNS   : -34.364
 
 Type  : Slow 1100mV 85C Model Hold 'CLOCK_50'
-Slack : 0.439
+Slack : 0.444
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'SW[4]'
+Slack : 0.615
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : 5.314
 TNS   : 0.000
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'SW[4]'
-Slack : -2.789
-TNS   : -9769.364
+Slack : -2.636
+TNS   : -7340.263
 
 Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
-Slack : -2.636
-TNS   : -205.120
+Slack : -0.538
+TNS   : -21.921
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : 0.449
+TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Setup 'SW[4]'
-Slack : -19.297
-TNS   : -17692.193
+Slack : -18.167
+TNS   : -20420.798
+
+Type  : Slow 1100mV 0C Model Setup 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : -7.986
+TNS   : -7.986
 
 Type  : Slow 1100mV 0C Model Setup 'CLOCK_50'
-Slack : -6.400
-TNS   : -264.805
+Slack : -2.023
+TNS   : -38.486
 
 Type  : Slow 1100mV 0C Model Hold 'SW[4]'
-Slack : -0.941
-TNS   : -186.060
+Slack : 0.140
+TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Hold 'CLOCK_50'
-Slack : 0.447
+Slack : 0.452
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : 5.039
 TNS   : 0.000
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'SW[4]'
-Slack : -2.838
-TNS   : -9512.814
+Slack : -2.636
+TNS   : -7468.112
 
 Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
-Slack : -2.636
-TNS   : -203.378
+Slack : -0.538
+TNS   : -19.336
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : 0.418
+TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Setup 'SW[4]'
-Slack : -9.531
-TNS   : -8851.042
+Slack : -10.216
+TNS   : -11982.358
+
+Type  : Fast 1100mV 85C Model Setup 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : -4.256
+TNS   : -4.256
 
 Type  : Fast 1100mV 85C Model Setup 'CLOCK_50'
-Slack : -3.858
-TNS   : -137.422
+Slack : -0.287
+TNS   : -2.570
 
 Type  : Fast 1100mV 85C Model Hold 'SW[4]'
-Slack : -0.648
-TNS   : -171.638
+Slack : -0.033
+TNS   : -0.033
 
 Type  : Fast 1100mV 85C Model Hold 'CLOCK_50'
-Slack : 0.200
+Slack : 0.201
 TNS   : 0.000
 
-Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
-Slack : -2.174
-TNS   : -162.686
+Type  : Fast 1100mV 85C Model Hold 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : 2.919
+TNS   : 0.000
 
 Type  : Fast 1100mV 85C Model Minimum Pulse Width 'SW[4]'
-Slack : -1.863
-TNS   : -4263.116
+Slack : -2.174
+TNS   : -4068.538
 
-Type  : Fast 1100mV 0C Model Setup 'SW[4]'
-Slack : -8.461
-TNS   : -7800.062
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -0.403
+TNS   : -11.814
 
-Type  : Fast 1100mV 0C Model Setup 'CLOCK_50'
-Slack : -3.481
-TNS   : -124.218
-
-Type  : Fast 1100mV 0C Model Hold 'SW[4]'
-Slack : -0.432
-TNS   : -66.685
-
-Type  : Fast 1100mV 0C Model Hold 'CLOCK_50'
-Slack : 0.190
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : 0.479
 TNS   : 0.000
 
-Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
-Slack : -2.174
-TNS   : -167.735
+Type  : Fast 1100mV 0C Model Setup 'SW[4]'
+Slack : -9.333
+TNS   : -10943.243
+
+Type  : Fast 1100mV 0C Model Setup 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : -3.918
+TNS   : -3.918
+
+Type  : Fast 1100mV 0C Model Setup 'CLOCK_50'
+Slack : -0.270
+TNS   : -2.207
+
+Type  : Fast 1100mV 0C Model Hold 'SW[4]'
+Slack : -0.110
+TNS   : -0.126
+
+Type  : Fast 1100mV 0C Model Hold 'CLOCK_50'
+Slack : 0.188
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : 2.673
+TNS   : 0.000
 
 Type  : Fast 1100mV 0C Model Minimum Pulse Width 'SW[4]'
-Slack : -1.795
-TNS   : -4023.440
+Slack : -2.174
+TNS   : -4108.742
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLOCK_50'
+Slack : -0.442
+TNS   : -14.131
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'poliriscv_sc32:u_poliriscv|state.STATE_IDLE'
+Slack : 0.470
+TNS   : 0.000
 
 ------------------------------------------------------------

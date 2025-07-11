@@ -160,10 +160,6 @@
 					"strict" : false
 				},
 				{
-					"name" : "CLOCK_50",
-					"strict" : false
-				},
-				{
 					"name" : "RESET_N",
 					"strict" : false
 				},
@@ -173,6 +169,10 @@
 				},
 				{
 					"name" : "SW[5]",
+					"strict" : false
+				},
+				{
+					"name" : "CLOCK_50",
 					"strict" : false
 				}
 			]
